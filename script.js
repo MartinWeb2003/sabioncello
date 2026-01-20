@@ -1,12 +1,18 @@
 // script.js
 
-// Services: animate on scroll (IntersectionObserver)
+// Services: animate on scroll (IntersectionObserver) + fallbacks
 (() => {
   const items = document.querySelectorAll(".services__grid .animate-service");
   if (!items.length) return;
 
-  // Respect reduced motion preference
+  // Reduced motion: show immediately
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    items.forEach((el) => el.classList.add("in-view"));
+    return;
+  }
+
+  // Fallback: if IntersectionObserver isn't supported, show immediately
+  if (!("IntersectionObserver" in window)) {
     items.forEach((el) => el.classList.add("in-view"));
     return;
   }

@@ -15,10 +15,22 @@
   --container: 1120px;
   --nav-h: 76px;
   --break: 820px; /* breakpoint for hamburger */
+
+  /* Services section */
+  --services-bg: #f7efe4;
+  --services-card: #ffffff;
+  --services-radius: 18px;
+
+  /* Pricing section */
+  --panel-bg: #f1eadf;         /* slightly darker than page bg */
+  --price-card-bg: #ffffff;
+  --price-pill-monthly: #caa24a;
+  --price-pill-weekly: #2f4a3a;
 }
 
 * { box-sizing: border-box; }
 html, body { height: 100%; }
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -34,65 +46,17 @@ img { max-width: 100%; display: block; }
 }
 
 /* =========================
-   Navbar
+   Global transitions
 ========================= */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  background: var(--bg);
+a, button, input, textarea, summary, .btn,
+.service-card, .price-card, .howto__card,
+.svc-tile {
+  transition: all 0.2s ease;
 }
 
-.navbar {
-  height: var(--nav-h);
-  display: flex;
-  align-items: center;
-  justify-content:space-between;
-  gap: 16px;
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-.brand__logo {
-  height: 150px;
-  width: auto;
-  margin: 10px;
-  padding: 10px;
-  transform: translateY(10px);
-  align-items: left;
-}
-
-/* Right side */
-.nav-right {
-  display: flex;
-  align-items: center;
-}
-
-/* Links row */
-.nav-links {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  padding: 0;
-  margin: 0;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #111;
-  font-size: 14px;
-  font-weight: 600;
-  opacity: 0.92;
-}
-
-.nav-links a:hover { opacity: 1; }
-
-/* Buttons */
+/* =========================
+   Buttons
+========================= */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -124,15 +88,72 @@ img { max-width: 100%; display: block; }
 .btn--dark:hover { filter: brightness(1.05); }
 
 /* =========================
+   Navbar
+========================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--bg);
+}
+
+.navbar {
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.brand__logo {
+  height: 150px;
+  width: auto;
+  margin: 10px;
+  padding: 10px;
+  transform: translateY(10px);
+}
+
+/* Right side */
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Links row */
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #111;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.92;
+}
+
+.nav-links a:hover { opacity: 1; }
+
+/* =========================
    Language dropdown (CSS-only)
 ========================= */
-.lang { position: relative;
+.lang {
+  position: relative;
   margin-right: 10px;
 }
 
-.lang__details {
-  position: relative;
-}
+.lang__details { position: relative; }
 
 .lang__summary {
   list-style: none;
@@ -187,18 +208,13 @@ img { max-width: 100%; display: block; }
   gap: 10px;
 }
 
-.lang__item:hover {
-  background: rgba(0,0,0,0.05);
-}
+.lang__item:hover { background: rgba(0,0,0,0.05); }
 
 /* =========================
    Hamburger (CSS-only)
 ========================= */
-.nav-toggle {
-  display: none;
-}
+.nav-toggle { display: none; }
 
-/* Hamburger icon hidden on desktop */
 .hamburger {
   display: none;
   width: 44px;
@@ -221,13 +237,10 @@ img { max-width: 100%; display: block; }
   transition: transform 200ms ease, opacity 200ms ease;
 }
 
-/* Animate into an "X" when checked */
 .nav-toggle:checked + .hamburger span:nth-child(1) {
   transform: translateY(5px) rotate(45deg);
 }
-.nav-toggle:checked + .hamburger span:nth-child(2) {
-  opacity: 0;
-}
+.nav-toggle:checked + .hamburger span:nth-child(2) { opacity: 0; }
 .nav-toggle:checked + .hamburger span:nth-child(3) {
   transform: translateY(-5px) rotate(-45deg);
 }
@@ -235,9 +248,7 @@ img { max-width: 100%; display: block; }
 /* =========================
    Hero Layout
 ========================= */
-.hero {
-  padding: 32px 0 64px;
-}
+.hero { padding: 32px 0 64px; }
 
 .hero__wrap {
   position: relative;
@@ -248,18 +259,18 @@ img { max-width: 100%; display: block; }
   min-height: 420px;
 }
 
-/* Base card */
 .hero__card {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
 }
 
-/* Right image card */
 .hero__card--image {
   width: min(760px, 100%);
   height: 420px;
   background: #ddd;
+  position: relative;
+  z-index: 1;
 }
 
 .hero__card--image img {
@@ -268,7 +279,6 @@ img { max-width: 100%; display: block; }
   object-fit: cover;
 }
 
-/* Left text card overlapping */
 .hero__card--text {
   position: absolute;
   left: 0;
@@ -276,6 +286,7 @@ img { max-width: 100%; display: block; }
   background: var(--card);
   padding: 44px 44px 38px;
   box-shadow: var(--shadow);
+  z-index: 2;
 }
 
 .hero__title {
@@ -296,7 +307,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =========================
-   Responsive
+   Responsive (Hero + Navbar)
 ========================= */
 @media (max-width: 980px) {
   .hero__card--image { height: 400px; }
@@ -304,7 +315,6 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: var(--break)) {
-  /* Navbar becomes hamburger */
   .hamburger { display: inline-flex; }
 
   .nav-right {
@@ -318,10 +328,7 @@ img { max-width: 100%; display: block; }
     display: none;
   }
 
-  /* Show panel when checked */
-  .nav-toggle:checked ~ .nav-right {
-    display: block;
-  }
+  .nav-toggle:checked ~ .nav-right { display: block; }
 
   .nav-links {
     flex-direction: column;
@@ -337,7 +344,6 @@ img { max-width: 100%; display: block; }
     border-radius: 14px;
   }
 
-  /* Language dropdown full-width in mobile menu */
   .lang__summary {
     width: 100%;
     justify-content: space-between;
@@ -351,7 +357,6 @@ img { max-width: 100%; display: block; }
     margin-top: 10px;
   }
 
-  /* Hero stacks; keep a subtle overlap */
   .hero__wrap {
     flex-direction: column;
     align-items: stretch;
@@ -361,13 +366,12 @@ img { max-width: 100%; display: block; }
   .hero__card--image {
     width: 100%;
     height: 320px;
-    border-radius: var(--radius);
   }
 
   .hero__card--text {
     position: relative;
     width: 100%;
-    margin-top: -40px; /* overlap effect */
+    margin-top: -40px;
     padding: 28px 22px;
   }
 
@@ -380,24 +384,16 @@ img { max-width: 100%; display: block; }
 }
 
 /* =========================
-   Services Section (NEW)
+   Services Section
 ========================= */
-:root{
-  --services-bg: #f7efe4; /* different from hero bg */
-  --services-card: #ffffff;
-  --services-radius: 18px;
-}
-
-/* Full-width section with different background */
-.services{
+.services {
   position: relative;
   background: var(--services-bg);
   padding: 0 0 64px;
   overflow: hidden;
 }
 
-/* Top image that fades out to transparent at the bottom */
-.services__top{
+.services__top {
   position: relative;
   width: 100%;
   height: 220px;
@@ -408,16 +404,10 @@ img { max-width: 100%; display: block; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-
-  /* Fade-away effect:
-     - Modern: mask-image
-     - Fallback: gradient overlay below
-  */
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
 }
 
-/* Fallback overlay (helps if mask-image isn’t supported) */
 .services__top::after{
   content: "";
   position: absolute;
@@ -428,7 +418,7 @@ img { max-width: 100%; display: block; }
 
 .services__inner{
   position: relative;
-  margin-top: -40px; /* pulls content up slightly into the faded image like your ref */
+  margin-top: -40px;
   padding-top: 16px;
 }
 
@@ -451,7 +441,6 @@ img { max-width: 100%; display: block; }
   max-width: 72ch;
 }
 
-/* Grid: 3 columns x 2 rows on larger screens */
 .services__grid{
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -459,7 +448,6 @@ img { max-width: 100%; display: block; }
   padding-top: 12px;
 }
 
-/* Card */
 .service-card{
   background: var(--services-card);
   border-radius: var(--services-radius);
@@ -468,7 +456,6 @@ img { max-width: 100%; display: block; }
   border: 1px solid rgba(0,0,0,0.06);
 }
 
-/* Image area */
 .service-card__media{
   height: 150px;
   overflow: hidden;
@@ -480,10 +467,7 @@ img { max-width: 100%; display: block; }
   object-fit: cover;
 }
 
-/* Body text + arrow */
-.service-card__body{
-  padding: 14px 14px 14px;
-}
+.service-card__body{ padding: 14px; }
 
 .service-card__kicker{
   font-size: 10px;
@@ -509,7 +493,6 @@ img { max-width: 100%; display: block; }
   color: #141414;
 }
 
-/* Arrow button (no functionality for now) */
 .service-card__arrow{
   flex: 0 0 auto;
   width: 34px;
@@ -524,19 +507,10 @@ img { max-width: 100%; display: block; }
   font-weight: 900;
 }
 
-.service-card__arrow:hover{
-  filter: brightness(0.98);
-}
+.service-card__arrow:hover{ filter: brightness(0.98); }
 
-/* =========================
-   Services Responsive
-   - tablet: 2 columns
-   - small: 1 column, cards 90% width, images hidden
-========================= */
 @media (max-width: 980px){
-  .services__grid{
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  .services__grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 640px){
@@ -545,37 +519,18 @@ img { max-width: 100%; display: block; }
     justify-items: center;
   }
 
-  /* Cards take 90% width on small screens */
-  .service-card{
-    width: 90%;
-  }
+  .service-card{ width: 90%; }
+  .service-card__media{ display: none; }
 
-  /* Images hidden on small screens (as requested) */
-  .service-card__media{
-    display: none;
-  }
-
-  .services__top{
-    height: 180px;
-  }
-
-  .services__inner{
-    margin-top: -30px;
-  }
+  .services__top{ height: 180px; }
+  .services__inner{ margin-top: -30px; }
 }
 
 /* =========================
-   Pricing Section (NEW)
+   Pricing Section
 ========================= */
-:root{
-  --panel-bg: #eee5d8;      /* slightly darker than page bg */
-  --price-card-bg: #ffffff;
-  --price-pill-monthly: #caa24a;
-  --price-pill-weekly: #2f4a3a;
-}
-
 .pricing{
-  background: var(--bg); /* same as main page */
+  background: var(--bg);
   padding: 48px 0 72px;
 }
 
@@ -614,7 +569,6 @@ img { max-width: 100%; display: block; }
   line-height: 1.6;
 }
 
-/* Right side cards */
 .pricing__right{
   flex: 1 1 520px;
   display: grid;
@@ -627,27 +581,11 @@ img { max-width: 100%; display: block; }
   position: relative;
   background: var(--price-card-bg);
   border-radius: 18px;
-  padding: 18px 18px 16px;
+  padding: 34px 18px 16px; /* room for floating pill */
   box-shadow: var(--shadow-soft);
   border: 1px solid rgba(0,0,0,0.06);
-  overflow: hidden;
+  overflow: visible;
 }
-
-/* Pill at top (rounded top corners) */
-.price-card__pill{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 7px 12px;
-  font-size: 11px;
-  font-weight: 900;
-  color: #fff;
-  border-radius: 12px;
-  margin-bottom: 14px;
-}
-
-.price-card__pill--monthly{ background: var(--price-pill-monthly); color: #111; }
-.price-card__pill--weekly{ background: var(--price-pill-weekly); }
 
 .price-card__price{
   display: flex;
@@ -692,7 +630,6 @@ img { max-width: 100%; display: block; }
   font-weight: 600;
 }
 
-/* bullet dots like the ref */
 .price-card__list li::before{
   content: "";
   position: absolute;
@@ -715,75 +652,24 @@ img { max-width: 100%; display: block; }
   color: var(--accent);
 }
 
-.price-card__more:hover{
-  filter: brightness(0.95);
-}
+.price-card__more:hover{ filter: brightness(0.95); }
 
-/* =========================
-   Pricing Responsive
-   - stacks into column on small screens
-========================= */
-@media (max-width: 980px){
-  .pricing__panel{
-    padding: 32px;
-  }
-  .pricing__right{
-    grid-template-columns: 1fr;
-  }
-}
+/* floating pill */
+.price-card__pill{ display: none; } /* old in-card pill hidden */
 
-@media (max-width: 720px){
-  .pricing__panel{
-    flex-direction: column; /* left becomes top, right becomes bottom */
-    align-items: stretch;
-  }
-
-  .pricing__left{
-    max-width: none;
-  }
-}
-
-/* =========================
-   Pricing tweaks (ABSOLUTE PILL + lighter panel)
-   Only additions (no removals)
-========================= */
-
-/* Make panel only slightly darker than background (~5%) */
-:root{
-  --panel-bg: #f1eadf; /* lighter than your current #eee5d8 */
-}
-
-/* Hide the old in-card pill (so you don't have to delete HTML) */
-.price-card__pill{
-  display: none;
-}
-
-/* Prepare card to host absolute pill */
-.price-card{
-  overflow: visible;          /* allow pill to sit outside card */
-  padding-top: 34px;          /* space for the floating pill */
-}
-
-/* Floating pill placed on top edge */
 .price-card__pill-float{
   position: absolute;
   top: -34px;
   left: 18px;
-
   padding: 10px 18px;
   font-size: 12px;
   font-weight: 900;
   line-height: 1;
-
-  /* Only top corners rounded */
   border-radius: 14px 14px 0 0;
-
-  /* Nice separation from card */
   box-shadow: 0 10px 20px rgba(0,0,0,0.10);
   border: 1px solid rgba(0,0,0,0.06);
 }
 
-/* Color variants */
 .price-card__pill-float--monthly{
   background: var(--price-pill-monthly);
   color: #111;
@@ -794,8 +680,14 @@ img { max-width: 100%; display: block; }
   color: #fff;
 }
 
+@media (max-width: 980px){
+  .pricing__panel{ padding: 32px; flex-direction: column; align-items: stretch; }
+  .pricing__left{ max-width: none; }
+  .pricing__right{ grid-template-columns: 1fr; }
+}
+
 /* =========================
-   About Section (NEW)
+   About Section
 ========================= */
 .about{
   background: var(--bg);
@@ -825,7 +717,7 @@ img { max-width: 100%; display: block; }
 .about__text{
   margin: 0 auto;
   max-width: 92ch;
-  color: rgba(0,0,0,0.70);
+  color: #111; /* must be black */
   font-size: 12.5px;
   line-height: 1.75;
 }
@@ -837,12 +729,13 @@ img { max-width: 100%; display: block; }
   gap: 28px;
 }
 
-/* Left side image block */
 .about__left{
   flex: 1 1 520px;
   display: flex;
   align-items: center;
-  justify-content: center; /* centers the big div within left side */
+  justify-content: center;
+  position: relative;
+  margin: 20px;
 }
 
 .about__photo{
@@ -858,15 +751,17 @@ img { max-width: 100%; display: block; }
   width: 100%;
   height: 330px;
   object-fit: cover;
-  display: block;
 }
 
-/* Smaller logo box placed bottom-right of the photo */
-.about__logo-box{
+/* hide old logo inside photo (you use the outside one) */
+.about__photo .about__logo-box{ display: none; }
+
+/* outside logo box (your current positioning) */
+.about__logo-box--outside{
   position: absolute;
-  right: -16px;
-  bottom: -16px;
-  width: 200px;
+  left: 80%;
+  top: 80%;
+  width: 140px;
   height: 110px;
   background: #fff;
   border-radius: 16px;
@@ -876,22 +771,27 @@ img { max-width: 100%; display: block; }
   align-items: center;
   justify-content: center;
   padding: 14px;
+  z-index: 3;
 }
 
-.about__logo-box img{
+.about__logo-box--outside img{
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-/* Right side card */
 .about__card{
   flex: 1 1 520px;
   background: #fff;
   border-radius: 18px;
   box-shadow: var(--shadow-soft);
   border: 1px solid rgba(0,0,0,0.06);
-  padding: 22px 22px 18px;
+  min-height: 350px;
+  padding: 28px 28px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20px;
 }
 
 .about__card-title{
@@ -918,7 +818,6 @@ img { max-width: 100%; display: block; }
   line-height: 1.35;
 }
 
-/* gold check/bullet style */
 .about__list li::before{
   content: "";
   position: absolute;
@@ -939,127 +838,16 @@ img { max-width: 100%; display: block; }
   font-style: italic;
 }
 
-/* =========================
-   Responsive requirement:
-   - add to existing @media (max-width: 980px)
-   - also "combine" the 720 rules into 980 by re-declaring them there
-========================= */
 @media (max-width: 980px){
+  .about__text{ display: none; }
+  .about__bottom{ flex-direction: column; align-items: stretch; }
+  .about__fineprint{ display: none; }
 
-  /* (existing rules you already have will still apply) */
-
-  /* About top text content hidden */
-  .about__text{
-    display: none;
-  }
-
-  /* About layout becomes top/bottom */
-  .about__bottom{
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  /* Hide italic text in right card */
-  .about__fineprint{
-    display: none;
-  }
-
-  /* Keep image nicely sized on small screens */
-  .about__photo img{
-    height: 300px;
-  }
-
-  .about__logo-box{
-    right: 12px;
-    bottom: 12px;
-    width: 180px;
-    height: 100px;
-  }
-
-  /* Combine your old 720px PRICING stacking behavior into 980px too */
-  .pricing__panel{
-    flex-direction: column; /* left becomes top, right becomes bottom */
-    align-items: stretch;
-  }
-
-  .pricing__left{
-    max-width: none;
-  }
+  .about__photo img{ height: 300px; }
 }
 
 /* =========================
-   About tweaks (layout match)
-   Additions only
-========================= */
-
-/* Make the top paragraph text BLACK (not gray) */
-.about__text{
-  color: #111;
-}
-
-/* Allow absolute positioning within about__left (for the sibling logo box) */
-.about__left{
-  position: relative;
-  margin: 20px;
-}
-
-/* Hide the old logo box that is inside .about__photo */
-.about__photo .about__logo-box{
-  display: none;
-}
-
-/* Position the NEW sibling logo box so that:
-   its CENTER sits exactly on the bottom-right corner of the big photo */
-.about__logo-box--outside{
-  position: absolute;
-
-  /* Anchor the box center at the bottom-right corner of the photo */
-  left: 80%;
-  top: 80%;
-
-
-
-  /* keep your existing sizing */
-  width: 140px;
-  height: 110px;
-
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid rgba(0,0,0,0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px;
-  z-index: 3;
-}
-
-/* Increase height / presence of the right card */
-.about__card{
-  min-height: 350px;
-  padding: 28px 28px 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 20px;
-}
-
-/* Keep responsive behavior consistent: adjust logo positioning/sizing on <= 980px */
-@media (max-width: 980px){
-  .about__logo-box--outside{
-    width: 180px;
-    height: 100px;
-
-    transform:
-      translate(
-        calc((min(560px, 100%) / 2) - (180px / 2)),
-        calc((300px / 2) - (100px / 2))
-      );
-  }
-}
-
-/* =========================
-   How To Book Section (NEW)
+   How To Book Section
 ========================= */
 .howto{
   background: var(--bg);
@@ -1090,72 +878,18 @@ img { max-width: 100%; display: block; }
   font-weight: 900;
 }
 
-.howto__cta{
-  padding: 12px 18px;
-}
+.howto__cta{ padding: 12px 18px; }
 
-/* Steps row */
 .howto__steps{
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
-  justify-items: center; /* keeps them visually centered */
+  justify-items: center;
 }
 
 .howto__card{
   width: 100%;
-  background: #f7f2ea; /* soft warm card like ref */
-  border-radius: 18px;
-  padding: 22px 22px 20px;
-  border: 1px solid rgba(0,0,0,0.04);
-  min-height: 255px;
-/* =========================
-   How To Book Section (NEW)
-========================= */
-.howto{
-  background: var(--bg);
-  padding: 22px 0 72px;
-}
-
-.howto__panel{
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid rgba(0,0,0,0.06);
-  padding: 34px 34px 36px;
-}
-
-.howto__top{
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 22px;
-}
-
-.howto__title{
-  margin: 0;
-  font-size: clamp(20px, 2.4vw, 28px);
-  line-height: 1.15;
-  letter-spacing: -0.2px;
-  font-weight: 900;
-}
-
-.howto__cta{
-  padding: 12px 18px;
-}
-
-/* Steps row */
-.howto__steps{
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  justify-items: center; /* keeps them visually centered */
-}
-
-.howto__card{
-  width: 100%;
-  background: #f7f2ea; /* soft warm card like ref */
+  background: #f7f2ea;
   border-radius: 18px;
   padding: 22px 22px 20px;
   border: 1px solid rgba(0,0,0,0.04);
@@ -1189,80 +923,15 @@ img { max-width: 100%; display: block; }
   line-height: 1.6;
 }
 
-/* Responsive: stack steps */
 @media (max-width: 980px){
-  .howto__panel{
-    padding: 26px 22px 26px;
-  }
-
-  .howto__top{
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .howto__cta{
-    width: 100%;
-    justify-content: center;
-  }
-
-  .howto__steps{
-    grid-template-columns: 1fr;
-  }
-}
-
-
-}
-
-.howto__num{
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  background: rgba(0,0,0,0.06);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 900;
-  font-size: 12px;
-  margin-bottom: 12px;
-}
-
-.howto__card-title{
-  margin: 0 0 8px;
-  font-size: 14px;
-  font-weight: 900;
-  letter-spacing: -0.1px;
-}
-
-.howto__card-text{
-  margin: 0;
-  color: rgba(0,0,0,0.65);
-  font-size: 12.5px;
-  line-height: 1.6;
-}
-
-/* Responsive: stack steps */
-@media (max-width: 980px){
-  .howto__panel{
-    padding: 26px 22px 26px;
-  }
-
-  .howto__top{
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .howto__cta{
-    width: 100%;
-    justify-content: center;
-  }
-
-  .howto__steps{
-    grid-template-columns: 1fr;
-  }
+  .howto__panel{ padding: 26px 22px 26px; }
+  .howto__top{ flex-direction: column; align-items: flex-start; }
+  .howto__cta{ width: 100%; justify-content: center; }
+  .howto__steps{ grid-template-columns: 1fr; }
 }
 
 /* =========================
-   Contact Section (NEW)
+   Contact Section
 ========================= */
 .contact{
   background: var(--bg);
@@ -1291,7 +960,6 @@ img { max-width: 100%; display: block; }
   color: rgba(0,0,0,0.55);
 }
 
-/* Pills row */
 .contact__pills{
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1330,7 +998,6 @@ img { max-width: 100%; display: block; }
   color: rgba(0,0,0,0.70);
 }
 
-/* Bottom split layout */
 .contact__bottom{
   margin-top: 22px;
   display: flex;
@@ -1339,7 +1006,6 @@ img { max-width: 100%; display: block; }
   gap: 24px;
 }
 
-/* Left map block */
 .contact__map-wrap{
   position: relative;
   flex: 1 1 560px;
@@ -1365,7 +1031,6 @@ img { max-width: 100%; display: block; }
   display: block;
 }
 
-/* Logo box on map (absolute bottom-right) */
 .contact__map-logo{
   position: absolute;
   right: -16px;
@@ -1389,10 +1054,9 @@ img { max-width: 100%; display: block; }
   object-fit: contain;
 }
 
-/* Right form panel */
 .contact__form-panel{
   flex: 1 1 480px;
-  background: #eadfcf; /* warm beige like reference */
+  background: #eadfcf;
   border-radius: 18px;
   box-shadow: var(--shadow-soft);
   border: 1px solid rgba(0,0,0,0.06);
@@ -1425,7 +1089,6 @@ img { max-width: 100%; display: block; }
 .contact__textarea{
   border-radius: 16px;
   resize: none;
-  padding: 12px 14px;
 }
 
 .contact__input:focus,
@@ -1440,19 +1103,10 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.2px;
 }
 
-/* Responsive (use your existing 980px breakpoint) */
 @media (max-width: 980px){
-  .contact__pills{
-    grid-template-columns: 1fr;
-  }
-
-  .contact__bottom{
-    flex-direction: column;
-  }
-
-  .contact__map{
-    height: 340px;
-  }
+  .contact__pills{ grid-template-columns: 1fr; }
+  .contact__bottom{ flex-direction: column; }
+  .contact__map{ height: 340px; }
 
   .contact__map-logo{
     right: 12px;
@@ -1463,28 +1117,26 @@ img { max-width: 100%; display: block; }
 }
 
 /* =========================
-   Footer (NEW)
+   Footer
 ========================= */
 .site-footer{
   position: relative;
-  background: #3f5a4c; /* dark green */
+  background: #3f5a4c;
   color: rgba(255,255,255,0.88);
   padding: 44px 0 18px;
-  overflow: visible; /* allow WA badge to sit outside */
+  overflow: visible;
 }
 
-/* WhatsApp badge wrapper (absolute top-right) */
 .footer-wa{
   position: absolute;
   right: 30px;
-  top: -42px;                 /* pulls it above the footer */
+  top: -42px;
   width: 120px;
   height: 120px;
   pointer-events: none;
   z-index: 5;
 }
 
-/* All three layers share the exact same center */
 .footer-wa__halo,
 .footer-wa__ring,
 .footer-wa__img{
@@ -1495,29 +1147,24 @@ img { max-width: 100%; display: block; }
   border-radius: 999px;
 }
 
-/* Semi-transparent green circle (behind) */
 .footer-wa__halo{
   width: 148px;
   height: 148px;
-  background: rgba(66, 185, 95, 0.22); /* semi green */
+  background: rgba(66, 185, 95, 0.22);
 }
 
-/* White circle (middle) */
 .footer-wa__ring{
   width: 108px;
   height: 108px;
   background: #ffffff;
 }
 
-/* WhatsApp image (top) */
 .footer-wa__img{
   width: 78px;
   height: 78px;
   object-fit: cover;
-  border-radius: 999px;
 }
 
-/* Layout inside footer */
 .footer__inner{
   display: grid;
   grid-template-columns: 1.25fr 0.8fr 1fr 1fr;
@@ -1528,7 +1175,6 @@ img { max-width: 100%; display: block; }
 .footer__logo{
   height: 40px;
   width: auto;
-  display: block;
   margin-bottom: 12px;
   filter: brightness(1.15);
 }
@@ -1561,11 +1207,6 @@ img { max-width: 100%; display: block; }
   font-size: 12px;
 }
 
-.footer__social:hover{
-  filter: brightness(1.06);
-}
-
-/* Columns */
 .footer__heading{
   font-weight: 900;
   font-size: 12px;
@@ -1586,10 +1227,6 @@ img { max-width: 100%; display: block; }
   color: rgba(255,255,255,0.70);
   font-size: 12px;
   font-weight: 700;
-}
-
-.footer__list a:hover{
-  color: rgba(255,255,255,0.92);
 }
 
 .footer__contact-item{
@@ -1623,7 +1260,6 @@ img { max-width: 100%; display: block; }
   color: rgba(255,255,255,0.70);
 }
 
-/* Bottom row */
 .footer__bottom{
   margin-top: 26px;
   padding-top: 14px;
@@ -1640,14 +1276,13 @@ img { max-width: 100%; display: block; }
   text-align: center;
 }
 
-/* Back to top square button */
 .footer__to-top{
   position: absolute;
   right: 0;
   bottom: 0;
   width: 34px;
   height: 34px;
-  border-radius: 6px; /* slight radius */
+  border-radius: 6px;
   background: rgba(255,255,255,0.14);
   border: 1px solid rgba(255,255,255,0.18);
   display: inline-flex;
@@ -1658,23 +1293,10 @@ img { max-width: 100%; display: block; }
   font-weight: 900;
 }
 
-.footer__to-top:hover{
-  filter: brightness(1.08);
-}
-
-/* Responsive */
 @media (max-width: 980px){
   .footer__inner{
     grid-template-columns: 1fr;
     gap: 22px;
-  }
-
-  .footer__bottom{
-    justify-content: center;
-  }
-
-  .footer__to-top{
-    right: 0;
   }
 
   .footer-wa{
@@ -1686,15 +1308,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =========================
-   Global transitions (NEW)
-========================= */
-/* Keep this light: it's mainly for hover/interactive feel. */
-a, button, input, textarea, summary, .btn, .service-card, .price-card, .howto__card {
-  transition: all 0.2s ease;
-}
-
-/* =========================
-   Load-in Animations (NEW)
+   Animations
 ========================= */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(10px); }
@@ -1711,59 +1325,35 @@ a, button, input, textarea, summary, .btn, .service-card, .price-card, .howto__c
   to   { opacity: 1; transform: translateX(0); }
 }
 
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* =========================
-   Navbar animation (NEW)
-   - logo first
-   - then nav items staggered 0.1s each
-========================= */
-
-/* Start hidden so animation is visible on load */
+/* Navbar load-in */
 .brand,
 .nav-links > li {
   opacity: 0;
 }
 
-/* Logo */
 .brand {
   animation: fadeUp 0.45s ease forwards;
   animation-delay: 0.05s;
 }
 
-/* Nav items stagger */
 .nav-links > li {
   animation: fadeUp 0.45s ease forwards;
 }
 
-/* 0.1s delay between each item (Home, Service, About, Contact, Lang) */
 .nav-links > li:nth-child(1) { animation-delay: 0.15s; }
 .nav-links > li:nth-child(2) { animation-delay: 0.25s; }
 .nav-links > li:nth-child(3) { animation-delay: 0.35s; }
 .nav-links > li:nth-child(4) { animation-delay: 0.45s; }
 .nav-links > li:nth-child(5) { animation-delay: 0.55s; }
 
-/* On mobile menu (hamburger), don't keep them hidden before opening */
 @media (max-width: var(--break)) {
   .nav-links > li { opacity: 1; animation: none; }
-  .brand { opacity: 1; } /* keep logo visible */
+  .brand { opacity: 1; }
 }
 
-/* =========================
-   Hero animation (NEW)
-   - text from left + image from right, same time
-========================= */
+/* Hero load-in */
 .hero__card--text,
-.hero__card--image {
-  opacity: 0;
-}
+.hero__card--image { opacity: 0; }
 
 .hero__card--text {
   animation: fadeInLeft 0.6s ease forwards;
@@ -1775,38 +1365,17 @@ a, button, input, textarea, summary, .btn, .service-card, .price-card, .howto__c
   animation-delay: 0.2s;
 }
 
-/* =========================
-   Services stagger animation (NEW)
-   - each service fades up, staggered by 0.1s
-========================= */
-.animate-service {
-  opacity: 0;
-  animation: fadeUp 0.55s ease forwards;
-}
-
-/* Stagger order */
-.services__grid .animate-service:nth-child(1) { animation-delay: 0.10s; }
-.services__grid .animate-service:nth-child(2) { animation-delay: 0.20s; }
-.services__grid .animate-service:nth-child(3) { animation-delay: 0.30s; }
-.services__grid .animate-service:nth-child(4) { animation-delay: 0.40s; }
-.services__grid .animate-service:nth-child(5) { animation-delay: 0.50s; }
-.services__grid .animate-service:nth-child(6) { animation-delay: 0.60s; }
-
-
-/* =========================
-   Services: animate ON SCROLL (override)
-========================= */
+/* Services: on-scroll (uses .in-view added by JS) */
 .services__grid .animate-service{
   opacity: 0;
   transform: translateY(10px);
-  animation: none; /* prevents page-load animation */
+  animation: none;
 }
 
 .services__grid .animate-service.in-view{
   animation: fadeUp 0.55s ease forwards;
 }
 
-/* Stagger delays */
 .services__grid .animate-service.in-view:nth-child(1){ animation-delay: 0.10s; }
 .services__grid .animate-service.in-view:nth-child(2){ animation-delay: 0.20s; }
 .services__grid .animate-service.in-view:nth-child(3){ animation-delay: 0.30s; }
@@ -1814,22 +1383,22 @@ a, button, input, textarea, summary, .btn, .service-card, .price-card, .howto__c
 .services__grid .animate-service.in-view:nth-child(5){ animation-delay: 0.50s; }
 .services__grid .animate-service.in-view:nth-child(6){ animation-delay: 0.60s; }
 
-/* =========================
-   Hero stacking fix (text above image)
-========================= */
-.hero__wrap{ position: relative; }
+/* Reduced motion: never hide content */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 
-.hero__card--image{
-  position: relative;
-  z-index: 1;
+  .brand,
+  .nav-links > li,
+  .hero__card--text,
+  .hero__card--image,
+  .services__grid .animate-service {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
-.hero__card--text{
-  z-index: 2;
-}
-
 /* =========================
-   Services Page (NEW)
+   Services Page
 ========================= */
 .svc-hero{
   background: #fff;
@@ -1837,9 +1406,7 @@ a, button, input, textarea, summary, .btn, .service-card, .price-card, .howto__c
   box-shadow: 0 20px 40px rgba(0,0,0,0.06);
 }
 
-.svc-hero__inner{
-  text-align: center;
-}
+.svc-hero__inner{ text-align: center; }
 
 .svc-hero__title{
   margin: 0 0 18px;
@@ -1853,7 +1420,7 @@ a, button, input, textarea, summary, .btn, .service-card, .price-card, .howto__c
   width: min(680px, 80%);
   height: 1px;
   margin: 0 auto 22px;
-  background: rgba(202,162,74,0.7); /* your gold accent */
+  background: rgba(202,162,74,0.7);
 }
 
 .svc-hero__subtitle{
@@ -1864,7 +1431,6 @@ a, button, input, textarea, summary, .btn, .service-card, .price-card, .howto__c
   line-height: 1.8;
 }
 
-/* Grid section */
 .svc-grid{
   background: #fff;
   padding: 60px 0 90px;
@@ -1872,18 +1438,16 @@ a, button, input, textarea, summary, .btn, .service-card, .price-card, .howto__c
 
 .svc-grid__tiles{
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 x 3 grid */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 44px 60px;
   align-items: start;
 }
 
-/* Tile */
 .svc-tile{
   position: relative;
-  display: block;
   border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 18px 45px rgba(0,0,0,0.20); /* like screenshot */
+  box-shadow: 0 18px 45px rgba(0,0,0,0.20);
   text-decoration: none;
   background: #000;
   min-height: 280px;
@@ -1892,7 +1456,6 @@ a, button, input, textarea, summary, .btn, .service-card, .price-card, .howto__c
   justify-content: center;
 }
 
-/* Media (image zooms on hover) */
 .svc-tile__media{
   position: absolute;
   inset: 0;
@@ -1906,16 +1469,14 @@ a, button, input, textarea, summary, .btn, .service-card, .price-card, .howto__c
   transition: transform 0.25s ease;
 }
 
-/* Overlay that appears on hover (warm palette) */
 .svc-tile__overlay{
   position: absolute;
   inset: 0;
-  background: rgba(202,162,74,0.22); /* gold tint */
+  background: rgba(202,162,74,0.22);
   opacity: 0;
   transition: opacity 0.25s ease;
 }
 
-/* Title centered */
 .svc-tile__title{
   position: relative;
   z-index: 2;
@@ -1924,48 +1485,25 @@ a, button, input, textarea, summary, .btn, .service-card, .price-card, .howto__c
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: clamp(18px, 2vw, 30px);
   font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: rgba(255,255,255,0.92);
   text-align: center;
-
   padding: 24px;
 }
 
-/* Hover effect */
-.svc-tile:hover .svc-tile__media img{
-  transform: scale(1.08);
-}
+.svc-tile:hover .svc-tile__media img{ transform: scale(1.08); }
+.svc-tile:hover .svc-tile__overlay{ opacity: 1; }
 
-.svc-tile:hover .svc-tile__overlay{
-  opacity: 1;
-}
-
-/* Responsive */
 @media (max-width: 980px){
-  .svc-hero{
-    padding: 64px 0 44px;
-  }
-
-  .svc-hero__subtitle{
-    font-size: 16px;
-  }
-
-  .svc-grid__tiles{
-    gap: 22px;
-  }
+  .svc-hero{ padding: 64px 0 44px; }
+  .svc-hero__subtitle{ font-size: 16px; }
+  .svc-grid__tiles{ gap: 22px; }
 }
 
 @media (max-width: 720px){
-  .svc-grid__tiles{
-    grid-template-columns: 1fr; /* stack */
-  }
-
-  .svc-tile{
-    min-height: 220px;
-  }
+  .svc-grid__tiles{ grid-template-columns: 1fr; }
+  .svc-tile{ min-height: 220px; }
 }
-

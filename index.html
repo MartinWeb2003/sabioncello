@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sabioncello Property Management</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+
+  </head>
+
+  <body id="top">
+    <!-- NAVBAR -->
+    <header class="site-header">
+      <nav class="navbar">
+        <!-- Logo -->
+        <a class="brand" href="#">
+          <img class="brand__logo" src="images/logo.png" alt="Sabioncello logo" />
+        </a>
+
+        <!-- Mobile menu toggle (CSS-only) -->
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label for="nav-toggle" class="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </label>
+
+        <!-- Links (desktop + mobile panel) -->
+        <div class="nav-right">
+          <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="services.html">Service</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a class="btn btn--pill" href="#contact">Contact Us</a></li>
+
+            <!-- Language dropdown -->
+            <li class="lang">
+              <details class="lang__details">
+                <summary class="lang__summary" aria-label="Language">
+                  <span class="lang__flag" aria-hidden="true"></span>
+                  <span class="lang__code">HR</span>
+                  <svg class="chev" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M5.5 7.5L10 12l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </summary>
+
+                <div class="lang__menu" role="menu" aria-label="Language options">
+                  <button type="button" class="lang__item" role="menuitem">
+                    <span class="lang__flag" aria-hidden="true"></span> EN
+                  </button>
+                  <button type="button" class="lang__item" role="menuitem">
+                    <span class="lang__flag" aria-hidden="true"></span> HR
+                  </button>
+                </div>
+              </details>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <main>
+      <section class="hero container">
+        <div class="hero__wrap">
+          <!-- Left card -->
+          <div class="hero__card hero__card--text">
+            <h1 class="hero__title">
+              Sabioncello<br />
+              <span class="accent">Property</span> Management
+            </h1>
+
+            <p class="hero__subtitle">
+              Professional provider of property management and maintenance services in the
+              Pelješac Area – Orebić, Viganj, Kučište.
+            </p>
+
+            <a class="btn btn--dark" href="#">Get Started</a>
+          </div>
+
+          <!-- Right card (image only) -->
+          <div class="hero__card hero__card--image" aria-label="Property image">
+            <img
+              src="images/villa1.jpg"
+              alt="Modern villa with pool"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES (NEW SECTION) -->
+      <section class="services" id="services">
+        <!-- Top wide image with fade-out -->
+        <div class="services__top">
+          <!-- replace with your own image -->
+          <img src="images/bathroom.jpg" alt="" aria-hidden="true" />
+        </div>
+
+        <div class="services__inner container">
+          <header class="services__header">
+            <h2 class="services__title">Our Top Services</h2>
+            <p class="services__subtitle">
+              We are family firm from Peljesac that can guarantee you quality of facility maintenance
+              and safety for your property.
+            </p>
+          </header>
+
+          <div class="services__grid">
+            <!-- Card 1 -->
+            <article class="service-card animate-service">
+              <div class="service-card__media">
+                <img src="images/cleaning.jpg" alt="Individual cleaning" loading="lazy" />
+              </div>
+              <div class="service-card__body">
+                <div class="service-card__kicker">Object cleaning</div>
+                <div class="service-card__row">
+                  <h3 class="service-card__title">Individual cleaning for you or your guest</h3>
+                  <button class="service-card__arrow" type="button" aria-label="Open service">
+                    <span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="service-card animate-service">
+              <div class="service-card__media">
+                <img src="images/property.jpg" alt="Property management" loading="lazy" />
+              </div>
+              <div class="service-card__body">
+                <div class="service-card__kicker">Property Management</div>
+                <div class="service-card__row">
+                  <h3 class="service-card__title">We take care of your property</h3>
+                  <button class="service-card__arrow" type="button" aria-label="Open service">
+                    <span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="service-card animate-service">
+              <div class="service-card__media">
+                <img src="images/holiday.jpg" alt="Holiday rentals" loading="lazy" />
+              </div>
+              <div class="service-card__body">
+                <div class="service-card__kicker">Holiday Rentals</div>
+                <div class="service-card__row">
+                  <h3 class="service-card__title">Complete service for a smooth holiday rental</h3>
+                  <button class="service-card__arrow" type="button" aria-label="Open service">
+                    <span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="service-card animate-service">
+              <div class="service-card__media">
+                <img src="images/garden.jpg" alt="Garden maintenance" loading="lazy" />
+              </div>
+              <div class="service-card__body">
+                <div class="service-card__kicker">Garden Maintenance</div>
+                <div class="service-card__row">
+                  <h3 class="service-card__title">We care for your outdoor spaces</h3>
+                  <button class="service-card__arrow" type="button" aria-label="Open service">
+                    <span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 5 -->
+            <article class="service-card animate-service">
+              <div class="service-card__media">
+                <img src="images/pool.jpg" alt="Pool maintenance" loading="lazy" />
+              </div>
+              <div class="service-card__body">
+                <div class="service-card__kicker">Pool Maintenance</div>
+                <div class="service-card__row">
+                  <h3 class="service-card__title">Safe, clean &amp; well-maintained pools</h3>
+                  <button class="service-card__arrow" type="button" aria-label="Open service">
+                    <span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 6 -->
+            <article class="service-card animate-service">
+              <div class="service-card__media">
+                <img src="images/administer.jpg" alt="Administrative assistance" loading="lazy" />
+              </div>
+              <div class="service-card__body">
+                <div class="service-card__kicker">Administrative Assistance</div>
+                <div class="service-card__row">
+                  <h3 class="service-card__title">Support with documentation &amp; paperwork</h3>
+                  <button class="service-card__arrow" type="button" aria-label="Open service">
+                    <span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <!-- /SERVICES -->
+             <!-- PRICING (NEW SECTION) -->
+      <section class="pricing" id="pricing">
+        <div class="pricing__panel container">
+          <!-- Left side -->
+          <div class="pricing__left">
+            <div class="pricing__kicker">Pricing details</div>
+            <h2 class="pricing__title">Our Pricing</h2>
+            <p class="pricing__subtitle">
+              We are family firm from Pelješac that can guarantee you quality of facility maintenance
+              and safety for your property.
+            </p>
+            <a class="btn btn--dark" href="#">Get Started</a>
+          </div>
+
+          <!-- Right side -->
+          <div class="pricing__right">
+            <!-- Card 1 -->
+            <article class="price-card">
+              <div class="price-card__pill-float price-card__pill-float--monthly">Monthly Check</div>
+
+              <div class="price-card__price">
+                <span class="price-card__from">From</span><span class="price-card__amount">€60</span>
+              </div>
+              <div class="price-card__freq">Monthly</div>
+
+              <ul class="price-card__list">
+                <li>Check once a month</li>
+                <li>Ventilation of all rooms</li>
+                <li>Security check</li>
+                <li>Flusing the sanitary facilities</li>
+                <li>Empty mailbox</li>
+                <li>Check all connections</li>
+              </ul>
+
+              <a class="price-card__more" href="#">
+                More Information <span aria-hidden="true">→</span>
+              </a>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="price-card">
+              <div class="price-card__pill-float price-card__pill-float--weekly">Weekly Check</div>
+
+              <div class="price-card__price">
+                <span class="price-card__from">From</span><span class="price-card__amount">€180</span>
+              </div>
+              <div class="price-card__freq">Monthly</div>
+
+              <ul class="price-card__list">
+                <li>Check-up 4 times/month</li>
+                <li>Ventilation of all rooms</li>
+                <li>Security check</li>
+                <li>Flusing the sanitary facilities</li>
+                <li>Empty mailbox</li>
+                <li>Check all connections</li>
+              </ul>
+
+              <a class="price-card__more" href="#">
+                More Information <span aria-hidden="true">→</span>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+      <!-- /PRICING -->
+
+            <!-- ABOUT (NEW SECTION) -->
+      <section class="about" id="about">
+        <!-- Top part -->
+        <header class="about__top container">
+          <h2 class="about__title">About <span class="accent">Sabioncello</span></h2>
+          <p class="about__eyebrow">WHY SABIONCELLO IS THE RIGHT PARTNER FOR YOUR HOLIDAY RENTAL</p>
+
+          <!-- This paragraph will be hidden on <= 980px as requested -->
+          <p class="about__text">
+            Our mission goes far beyond keeping your property clean — we aim to create an exceptional
+            experience for both owners and guests. As an experienced holiday rental service provider
+            on Pelješac, Sabioncello understands the demands of the seasonal rental market in every
+            detail. We are not just a cleaning team; we act as your trusted host in the background,
+            ensuring everything runs smoothly and professionally at all times. Our team is trained,
+            discreet, and service-oriented, with a strong focus on reliability and guest satisfaction.
+            Multilingual communication ensures clear and efficient support for international guests.
+          </p>
+        </header>
+
+        <!-- Bottom part (inside same background as page) -->
+        <div class="about__bottom container">
+          <!-- Left side -->
+          <div class="about__left">
+            <div class="about__photo">
+                <img src="images/interior.jpg" alt="Interior of a holiday rental" loading="lazy" />
+
+                <!-- old one stays (we will hide it with CSS) -->
+                <div class="about__logo-box" aria-label="Sabioncello logo">
+                <img src="images/logo.png" alt="Sabioncello Property Management" />
+                </div>
+            </div>
+
+            <!-- NEW: outside sibling logo box (this is the one we will position) -->
+            <div class="about__logo-box about__logo-box--outside" aria-label="Sabioncello logo">
+                <img src="images/logo.png" alt="Sabioncello Property Management" />
+            </div>
+          </div>
+
+
+          <!-- Right side -->
+          <aside class="about__card">
+            <h3 class="about__card-title">Why property owners choose Sabioncello:</h3>
+
+            <ul class="about__list">
+              <li>Dedicated local contact on site</li>
+              <li>Fast response times for guest inquiries and urgent situations</li>
+              <li>Transparent pricing with no hidden costs</li>
+              <li>Flexible service packages tailored to individual property needs</li>
+            </ul>
+
+            <!-- This italic text will be hidden on <= 980px as requested -->
+            <p class="about__fineprint">
+              With Sabioncello, your holiday rental on Pelješac is managed with care, professionalism,
+              and attention to detail — so you and your guests can enjoy complete peace of mind.
+            </p>
+          </aside>
+        </div>
+      </section>
+      <!-- /ABOUT -->
+
+            <!-- HOW TO BOOK (NEW SECTION) -->
+      <section class="howto" id="howto">
+        <div class="howto__panel container">
+          <!-- Top row -->
+          <div class="howto__top">
+            <div class="howto__top-left">
+              <h2 class="howto__title">
+                How To Book Our<br />
+                Service <span class="accent">Book An Appointment</span>
+              </h2>
+            </div>
+
+            <div class="howto__top-right">
+              <a class="btn btn--dark howto__cta" href="#">Book An Appointment</a>
+            </div>
+          </div>
+
+          <!-- Steps -->
+          <div class="howto__steps">
+            <!-- Step 1 -->
+            <article class="howto__card">
+              <div class="howto__num">1</div>
+              <h3 class="howto__card-title">Make an appointment online or by phone</h3>
+              <p class="howto__card-text">
+                You can easily arrange appointments via our booking calendar or by phone.
+              </p>
+            </article>
+
+            <!-- Step 2 -->
+            <article class="howto__card">
+              <div class="howto__num">2</div>
+              <h3 class="howto__card-title">Preparation of a needs analysis with an offer</h3>
+              <p class="howto__card-text">
+                During an on-site appointment, we will provide you with a free, non-binding quote
+                including a needs analysis.
+              </p>
+            </article>
+
+            <!-- Step 3 -->
+            <article class="howto__card">
+              <div class="howto__num">3</div>
+              <h3 class="howto__card-title">Implementation of the desired service</h3>
+              <p class="howto__card-text">
+                After all work has been completed, you will immediately receive a clear report
+                including pictures.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <!-- /HOW TO BOOK -->
+
+            <!-- CONTACT (NEW SECTION) -->
+      <section class="contact" id="contact">
+        <div class="contact__top container">
+          <h2 class="contact__title">Ready To Call</h2>
+          <p class="contact__subtitle">WHY SABIONCELLO IS THE RIGHT PARTNER FOR YOUR HOLIDAY RENTAL</p>
+
+          <!-- Info pills -->
+          <div class="contact__pills">
+            <div class="contact-pill">
+              <span class="contact-pill__icon" aria-hidden="true">📍</span>
+              <span class="contact-pill__text">Perna 4, HR – 20250 Orebić</span>
+            </div>
+
+            <div class="contact-pill">
+              <span class="contact-pill__icon" aria-hidden="true">✉️</span>
+              <span class="contact-pill__text">info@sabioncello.org</span>
+            </div>
+
+            <div class="contact-pill">
+              <span class="contact-pill__icon" aria-hidden="true">📞</span>
+              <span class="contact-pill__text">+385 (0)99 595 6567</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact__bottom container">
+          <!-- LEFT: Map -->
+          <div class="contact__map-wrap">
+            <div class="contact__map">
+              <!-- Google Maps embed (no API key needed).
+                   Replace the src with your exact place if you want. -->
+              <iframe
+                title="Sabioncello Office Location"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=Perna%204,%2020250%20Orebi%C4%87&output=embed"
+              ></iframe>
+            </div>
+
+            <!-- Logo box (absolute bottom-right like About) -->
+            <div class="contact__map-logo" aria-label="Sabioncello logo">
+              <img src="images/logo.png" alt="Sabioncello Property Management" />
+            </div>
+          </div>
+
+          <!-- RIGHT: Form panel -->
+          <div class="contact__form-panel">
+            <form class="contact__form" action="#" method="post">
+              <label class="contact__label" for="c-name">Name</label>
+              <input class="contact__input" id="c-name" name="name" type="text" placeholder="Type your name..." />
+
+              <label class="contact__label" for="c-email">Email</label>
+              <input class="contact__input" id="c-email" name="email" type="email" placeholder="Type your email address..." />
+
+              <label class="contact__label" for="c-phone">Phone Number</label>
+              <input class="contact__input" id="c-phone" name="phone" type="tel" placeholder="Type your number" />
+
+              <label class="contact__label" for="c-msg">Message</label>
+              <textarea class="contact__textarea" id="c-msg" name="message" rows="5" placeholder="Type your message..."></textarea>
+
+              <button class="contact__submit btn btn--dark" type="button">
+                SCHEDULE A CALL
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <!-- /CONTACT -->
+
+            <!-- FOOTER (NEW SECTION) -->
+      <footer class="site-footer" id="footer">
+        <!-- WhatsApp badge (absolute, top-right, partially outside footer) -->
+        <div class="footer-wa" aria-hidden="true">
+          <div class="footer-wa__halo"></div>
+          <div class="footer-wa__ring"></div>
+          <img class="footer-wa__img" src="images/whatsapp.png" alt="" />
+        </div>
+
+        <div class="footer__inner container">
+          <!-- Left: logo + short text + socials -->
+          <div class="footer__col footer__brand">
+            <img class="footer__logo" src="images/logo-white.png" alt="Sabioncello Property Management" />
+            <p class="footer__text">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+            </p>
+
+            <div class="footer__socials" aria-label="Social links">
+              <a class="footer__social" href="#" aria-label="Instagram">⌁</a>
+              <a class="footer__social" href="#" aria-label="LinkedIn">in</a>
+              <a class="footer__social" href="#" aria-label="Facebook">f</a>
+            </div>
+          </div>
+
+          <!-- Directly To -->
+          <div class="footer__col">
+            <div class="footer__heading">Directly To</div>
+            <ul class="footer__list">
+              <li><a href="#">Home</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <!-- Services -->
+          <div class="footer__col">
+            <div class="footer__heading">Services</div>
+            <ul class="footer__list">
+              <li><a href="#">Key Holding Services</a></li>
+              <li><a href="#">Cleaning Services</a></li>
+              <li><a href="#">Checking in and out</a></li>
+              <li><a href="#">Pool cleaning and Maintenance</a></li>
+              <li><a href="#">Laundry Services</a></li>
+              <li><a href="#">Paperwork</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div class="footer__col footer__contact">
+            <div class="footer__heading">Do you have a question</div>
+
+            <div class="footer__contact-item">
+              <span class="footer__contact-icon" aria-hidden="true">📞</span>
+              <div>
+                <div class="footer__contact-title">Call Us</div>
+                <div class="footer__contact-sub">+385 (0)99 595 6567</div>
+              </div>
+            </div>
+
+            <div class="footer__contact-item">
+              <span class="footer__contact-icon" aria-hidden="true">✉️</span>
+              <div>
+                <div class="footer__contact-title">Email</div>
+                <div class="footer__contact-sub">info@sabioncello.org</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer__bottom container">
+          <div class="footer__copyright">
+            © Copyright Sabioncello. All Rights Reserved
+          </div>
+
+          <!-- Back to top button -->
+          <a class="footer__to-top" href="#" aria-label="Back to top">
+            <span aria-hidden="true">↑</span>
+          </a>
+        </div>
+      </footer>
+      <!-- /FOOTER -->
+
+    </main>
+  </body>
+</html>

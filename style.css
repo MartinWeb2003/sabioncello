@@ -1270,14 +1270,30 @@ a, button, input, textarea, summary, .btn,
 }
 
 .footer-wa{
-  position: absolute;
-  right: 30px;
-  top: -42px;
-  width: 120px;
-  height: 120px;
-  pointer-events: none;
-  z-index: 5;
+  position: fixed;
+  right: 22px;
+  bottom: max(22px, env(safe-area-inset-bottom));
+  width: 90px;
+  height: 90px;
+
+  z-index: 60;          /* above navbar/hamburger */
+  pointer-events: auto;  /* clickable */
+  cursor: pointer;
+
+  display: block;
+  text-decoration: none;
 }
+
+.footer-wa:hover{
+  transform: translateY(-2px);
+}
+
+.footer-wa:focus-visible{
+  outline: 2px solid rgba(255,255,255,0.9);
+  outline-offset: 6px;
+  border-radius: 999px;
+}
+
 
 .footer-wa__halo,
 .footer-wa__ring,
@@ -1290,14 +1306,14 @@ a, button, input, textarea, summary, .btn,
 }
 
 .footer-wa__halo{
-  width: 148px;
-  height: 148px;
+  width: 128px;
+  height: 128px;
   background: rgba(66, 185, 95, 0.22);
 }
 
 .footer-wa__ring{
-  width: 108px;
-  height: 108px;
+  width: 88px;
+  height: 88px;
   background: #ffffff;
 }
 

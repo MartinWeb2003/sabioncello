@@ -20,8 +20,18 @@
         </a>
 
         <!-- Mobile menu toggle (CSS-only) -->
+        <!-- The checkbox stores the open/closed state of the mobile menu.
+             A label styled as a button toggles this checkbox.  We add ARIA
+             attributes to improve accessibility: aria-expanded reflects the
+             open state and aria-controls points at the menu element. -->
         <input type="checkbox" id="nav-toggle" class="nav-toggle" />
-        <label for="nav-toggle" class="hamburger">
+        <label
+          for="nav-toggle"
+          class="hamburger"
+          aria-label="Toggle navigation"
+          aria-controls="nav-menu"
+          aria-expanded="false"
+        >
           <i class="fa-solid fa-bars"></i>
           <i class="fa-solid fa-xmark"></i>
         </label>
@@ -29,7 +39,7 @@
 
 
         <!-- Links (desktop + mobile panel) -->
-        <div class="nav-right">
+        <div id="nav-menu" class="nav-right" aria-hidden="true">
           <ul class="nav-links">
             <li><a href="#">Home</a></li>
             <li><a href="services.html">Service</a></li>
@@ -41,18 +51,30 @@
               <details class="lang__details">
                 <summary class="lang__summary" aria-label="Language">
                   <span class="lang__flag" aria-hidden="true"></span>
-                  <span class="lang__code">HR</span>
+                  <span class="lang__code">ENG</span>
                   <svg class="chev" viewBox="0 0 20 20" aria-hidden="true">
                     <path d="M5.5 7.5L10 12l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                   </svg>
                 </summary>
 
                 <div class="lang__menu" role="menu" aria-label="Language options">
-                  <button type="button" class="lang__item" role="menuitem">
-                    <span class="lang__flag" aria-hidden="true"></span> EN
+                  <button
+                    type="button"
+                    class="lang__item"
+                    role="menuitem"
+                    data-lang="en"
+                  >
+                    <span class="lang__flag" aria-hidden="true"></span>
+                    ENG
                   </button>
-                  <button type="button" class="lang__item" role="menuitem">
-                    <span class="lang__flag" aria-hidden="true"></span> HR
+                  <button
+                    type="button"
+                    class="lang__item"
+                    role="menuitem"
+                    data-lang="hr"
+                  >
+                    <span class="lang__flag" aria-hidden="true"></span>
+                    HR
                   </button>
                 </div>
               </details>
@@ -226,7 +248,7 @@
           <!-- Right side -->
           <div class="pricing__right">
             <!-- Card 1 -->
-            <article class="price-card">
+            <article class="price-card animate-price">
               <div class="price-card__pill-float price-card__pill-float--monthly">Monthly Check</div>
 
               <div class="price-card__price">
@@ -249,7 +271,7 @@
             </article>
 
             <!-- Card 2 -->
-            <article class="price-card">
+            <article class="price-card animate-price">
               <div class="price-card__pill-float price-card__pill-float--weekly">Weekly Check</div>
 
               <div class="price-card__price">

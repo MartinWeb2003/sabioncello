@@ -648,6 +648,13 @@ a, button, input, textarea, summary, .btn,
   background-color: #caa24a;
 }
 
+.service-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+
 .price-card__price{
   display: flex;
   align-items: baseline;

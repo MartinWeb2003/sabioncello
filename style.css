@@ -355,6 +355,7 @@ a, button, input, textarea, summary, .btn,
 @media (max-width: 980px) {
   .hero__card--image { height: 400px; }
   .hero__wrap { min-height: 400px; }
+
 }
 
 @media (max-width: 720px) {
@@ -1463,6 +1464,10 @@ a, button, input, textarea, summary, .btn,
     grid-template-columns: 1fr;
     gap: 22px;
   }
+  .about__logo-box--outside{
+    top: 70%;
+    left: 80%;
+  }
 
 
 
@@ -1675,6 +1680,9 @@ a, button, input, textarea, summary, .btn,
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  .about__logo-box--outside{
+    display: none;
   }
   .about__text{
     font-size: 0.7rem;

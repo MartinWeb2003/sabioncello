@@ -387,3 +387,22 @@
     setLanguage(lang);
   });
 })();
+
+// ===============================
+// Disable horizontal scrolling (X axis)
+// ===============================
+(() => {
+  const disableXScroll = () => {
+    document.documentElement.style.overflowX = "hidden";
+    document.body.style.overflowX = "hidden";
+  };
+
+  // Apply immediately
+  disableXScroll();
+
+  // Re-apply after DOM is fully loaded (safety)
+  document.addEventListener("DOMContentLoaded", disableXScroll);
+
+  // Re-apply after window resize (safety for responsive layouts)
+  window.addEventListener("resize", disableXScroll);
+})();

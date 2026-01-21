@@ -111,6 +111,9 @@ a, button, input, textarea, summary, .btn,
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-top: 10px;
 
   position: relative; /* IMPORTANT so mobile panel positions correctly */
 }
@@ -521,7 +524,11 @@ a, button, input, textarea, summary, .btn,
   object-fit: cover;
 }
 
-.service-card__body{ padding: 14px; }
+.service-card__body{
+  padding: 14px;
+  min-width: 100%;
+
+}
 
 .service-card__kicker{
   font-size: 10px;
@@ -570,7 +577,7 @@ a, button, input, textarea, summary, .btn,
 @media (max-width: 640px){
   .services__grid{
     grid-template-columns: 1fr;
-    justify-items: center;
+    align-items: center;
   }
 
   .service-card{ width: 90%; }
@@ -1457,12 +1464,7 @@ a, button, input, textarea, summary, .btn,
     gap: 22px;
   }
 
-  .footer-wa{
-    right: 16px;
-    top: -36px;
-    transform: scale(0.92);
-    transform-origin: top right;
-  }
+
 
   .about__card-image-wrap {
     display: flex;

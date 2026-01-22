@@ -1700,3 +1700,61 @@ a, button, input, textarea, summary, .btn,
 .nav-toggle:checked + .hamburger i.fa-xmark {
   display: block;
 }
+
+@media (max-width: 720px) {
+  .nav-right {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    padding: 14px 20px 18px;
+    background: var(--bg);
+    border-top: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+    display: none;
+    z-index: 40;
+  }
+
+  /* When opened via JavaScript, apply this class to show the panel */
+  .nav-right.is-open {
+    display: block;
+  }
+
+  /* Existing :checked rule can stay for legacy fallback */
+  .nav-toggle:checked ~ .nav-right { display: block; }
+}
+
+@media (max-width: 720px) {
+  .nav-right {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    padding: 14px 20px 18px;
+    background: var(--bg);
+    border-top: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+    z-index: 40;
+
+    /* animation setup */
+    display: block;              /* keep it renderable */
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+
+    transition:
+      max-height 280ms ease,
+      opacity 220ms ease,
+      transform 220ms ease;
+  }
+
+  .nav-right.is-open {
+    max-height: 520px;           /* big enough for all links + language */
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+

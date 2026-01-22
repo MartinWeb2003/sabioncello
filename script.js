@@ -41,34 +41,81 @@
 
   if (!toggle || !navRight || !hamburger) return;
 
+  // Close the mobile menu and optionally collapse language details
   const closeMenu = () => {
+    // For mobile view: remove our custom open class and uncheck the toggle
+    navRight.classList.remove("is-open");
     toggle.checked = false;
     if (langDetails) langDetails.open = false;
   };
 
   navRight.addEventListener("click", e => {
+    // If a link inside the mobile menu is clicked, close the menu
     const link = e.target.closest("a");
     if (link) closeMenu();
   });
 
   document.addEventListener("click", e => {
-    if (!toggle.checked) return;
+    // If the mobile menu isn't open, ignore
+    const isOpen = navRight.classList.contains("is-open");
+    if (!isOpen) return;
+    // Close menu if click occurs outside of nav panel and hamburger
     const clickedInsideNav  = navRight.contains(e.target);
     const clickedHamburger  = hamburger.contains(e.target);
     if (!clickedInsideNav && !clickedHamburger) closeMenu();
   });
 
   document.addEventListener("keydown", e => {
+    // Escape key closes the mobile menu
     if (e.key === "Escape") closeMenu();
   });
 
+  // Keep language details collapsed when the menu is programmatically closed
   toggle.addEventListener("change", () => {
     if (!toggle.checked && langDetails) langDetails.open = false;
   });
 
+  // Watch for viewport width changes and close the menu when resizing to desktop
   const mq = window.matchMedia("(min-width: 721px)");
   mq.addEventListener("change", e => {
     if (e.matches) closeMenu();
+  });
+
+  hamburger.addEventListener("click", e => {
+    // Prevent default toggling by the label to avoid double flips
+    e.preventDefault();
+    e.stopPropagation();
+    // Toggle our custom open class on the mobile panel
+    const isOpen = navRight.classList.toggle("is-open");
+    // Mirror the state on the hidden checkbox for accessibility and CSS
+    toggle.checked = isOpen;
+    // Update ARIA attributes
+    hamburger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    navRight.setAttribute("aria-hidden", isOpen ? "false" : "true");
+    // Collapse the language submenu when closing
+    if (!isOpen && langDetails) langDetails.open = false;
+    // Log the current state for debugging
+    console.log(
+      "Hamburger clicked: menu is now",
+      isOpen ? "open" : "closed"
+    );
+  });
+
+  // Also keep ARIA in sync for any other way the checkbox can change
+  toggle.addEventListener("change", () => {
+    const isOpen = toggle.checked;
+    // Sync class with checkbox state
+    if (isOpen) {
+      navRight.classList.add("is-open");
+    } else {
+      navRight.classList.remove("is-open");
+    }
+    hamburger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    navRight.setAttribute("aria-hidden", isOpen ? "false" : "true");
+    console.log(
+      "nav-toggle change event:",
+      isOpen ? "checked (open)" : "unchecked (closed)"
+    );
   });
 
   // Language selection

@@ -48,6 +48,7 @@ img { max-width: 100%; display: block; }
 .container {
   width: min(var(--container), calc(100% - 40px));
   margin: 0 auto;
+
 }
 
 /* =========================
@@ -683,6 +684,9 @@ background-color: #caa24a;}
 .service-steps {
   padding: 64px 0 80px;
   background: var(--services-bg);
+  align-items: center;
+  justify-content: center;
+
 }
 .service-steps h2 {
   margin-top: 0;

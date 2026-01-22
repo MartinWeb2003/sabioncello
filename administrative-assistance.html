@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrative Assistance – Sabioncello Property Management</title>
+    <!-- FontAwesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- Service page styles -->
+    <link rel="stylesheet" href="services.css" />
+    <!-- Existing script for nav toggle and translations -->
+    <script src="script.js" defer></script>
+  </head>
+  <body id="top">
+    <!-- NAVBAR -->
+    <header class="site-header">
+      <nav class="navbar">
+        <!-- Logo -->
+        <a class="brand" href="index.html">
+          <img class="brand__logo" src="images/logo.png" alt="Sabioncello logo" />
+        </a>
+
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label
+          for="nav-toggle"
+          class="hamburger"
+          aria-label="Toggle navigation"
+          aria-controls="nav-menu"
+          aria-expanded="false"
+        >
+          <i class="fa-solid fa-bars"></i>
+          <i class="fa-solid fa-xmark"></i>
+        </label>
+
+        <!-- Links (desktop + mobile panel) -->
+        <div id="nav-menu" class="nav-right" aria-hidden="true">
+          <ul class="nav-links">
+            <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+            <li><a href="services.html" data-i18n="nav_services">Service</a></li>
+            <li><a href="index.html#about" data-i18n="nav_about">About Us</a></li>
+            <li>
+              <a class="btn btn--pill" href="index.html#contact" data-i18n="nav_contact">Contact Us</a>
+            </li>
+            <!-- Language dropdown -->
+            <li class="lang">
+              <details class="lang__details">
+                <summary class="lang__summary" aria-label="Language">
+                  <span class="lang__flag" aria-hidden="true"></span>
+                  <span class="lang__code">EN</span>
+                  <svg class="chev" viewBox="0 0 20 20" aria-hidden="true">
+                    <path
+                      d="M5.5 7.5L10 12l4.5-4.5"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </summary>
+                <div class="lang__menu" role="menu" aria-label="Language options">
+                  <button type="button" class="lang__item" role="menuitem" data-lang="en">
+                    <span class="lang__flag" aria-hidden="true"></span> English (Engleski)
+                  </button>
+                    <button type="button" class="lang__item" role="menuitem" data-lang="hr">
+                    <span class="lang__flag" aria-hidden="true"></span> Croatian (Hrvatski)
+                  </button>
+                </div>
+              </details>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+      <!-- Hero Section -->
+      <section class="service-hero" style="background-image: url('images/administraiton-assistance.jpg');">
+        <div class="service-hero__content container">
+          <h1 data-i18n="admin_hero_heading">Administrative Assistance</h1>
+          <p data-i18n="admin_hero_subtitle">Support with documentation &amp; paperwork</p>
+        </div>
+      </section>
+
+      <!-- Overview Section -->
+      <section class="service-overview">
+        <div class="container">
+          <h2 data-i18n="admin_overview_heading">Support with Documentation &amp; Paperwork</h2>
+          <p data-i18n="admin_overview_p1">
+            Sabioncello provides reliable administrative support related to your property, helping you save time and avoid unnecessary stress.
+          </p>
+          <p data-i18n="admin_overview_p2">
+            We assist property owners with communication with local authorities, preparation and collection of required documentation, coordination of technical inspections, and organisation of services with trusted third parties.
+          </p>
+          <p data-i18n="admin_overview_p3">
+            Our goal is to simplify administrative procedures and ensure that all paperwork is handled correctly and on time.
+          </p>
+          <p data-i18n="admin_overview_p4">
+            With strong local knowledge and on-site support, Sabioncello acts as a trusted partner for administrative assistance on Pelješac, giving you complete peace of mind.
+          </p>
+        </div>
+      </section>
+
+      <!-- Included Services Section -->
+      <section class="service-included">
+        <div class="container">
+          <div class="included-list">
+            <h3 data-i18n="admin_features_title">Key Features</h3>
+            <ul>
+              <li data-i18n="admin_features_li1">Communication with local authorities</li>
+              <li data-i18n="admin_features_li2">Documentation preparation &amp; collection</li>
+              <li data-i18n="admin_features_li3">Coordination of inspections</li>
+              <li data-i18n="admin_features_li4">Organisation of services with trusted partners</li>
+              <li data-i18n="admin_features_li5">Timely &amp; accurate paperwork</li>
+            </ul>
+          </div>
+          <div class="included-text">
+            <h3 data-i18n="admin_equipment_title">Reliable Administration</h3>
+            <p data-i18n="admin_equipment_p">
+              Our administrative assistance ensures all your property-related paperwork and communications are managed accurately and efficiently, so you can focus on what matters most.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Benefits Section -->
+      <section class="service-benefits">
+        <div class="container">
+          <h2 data-i18n="admin_benefits_title">Why Choose Sabioncello</h2>
+          <div class="benefits-grid">
+            <div class="benefit-item">
+              <i class="fa-solid fa-map-location-dot benefit-icon" aria-hidden="true"></i>
+              <h3 data-i18n="admin_benefit1_title">Local Expertise</h3>
+              <p data-i18n="admin_benefit1_p">
+                Our on-site knowledge of regulations ensures smooth processes.
+              </p>
+            </div>
+            <div class="benefit-item">
+              <i class="fa-solid fa-clock benefit-icon" aria-hidden="true"></i>
+              <h3 data-i18n="admin_benefit2_title">Time Savings</h3>
+              <p data-i18n="admin_benefit2_p">
+                We handle all paperwork and coordination, saving you time.
+              </p>
+            </div>
+            <div class="benefit-item">
+              <i class="fa-solid fa-file-contract benefit-icon" aria-hidden="true"></i>
+              <h3 data-i18n="admin_benefit3_title">Accuracy &amp; Compliance</h3>
+              <p data-i18n="admin_benefit3_p">
+                We ensure documents and procedures meet legal requirements.
+              </p>
+            </div>
+            <div class="benefit-item">
+              <i class="fa-solid fa-handshake benefit-icon" aria-hidden="true"></i>
+              <h3 data-i18n="admin_benefit4_title">Trusted Network</h3>
+              <p data-i18n="admin_benefit4_p">
+                We work with reliable professionals to deliver quality services.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How To Book Section -->
+      <section class="service-steps">
+        <div class="container">
+          <h2 data-i18n="admin_steps_title">How to Book Our Service</h2>
+          <div class="steps-grid">
+            <div class="step-item">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h3 data-i18n="admin_step1_title">Contact us</h3>
+                <p data-i18n="admin_step1_p">Reach out to discuss your administrative needs.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h3 data-i18n="admin_step2_title">Assessment &amp; quote</h3>
+                <p data-i18n="admin_step2_p">We evaluate your requirements and provide a tailored offer.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h3 data-i18n="admin_step3_title">Service delivery</h3>
+                <p data-i18n="admin_step3_p">We handle all paperwork and coordination for you.</p>
+              </div>
+            </div>
+          </div>
+          <a href="index.html#contact" class="btn btn--dark steps-cta" data-i18n="admin_steps_cta">Book an Appointment</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-wa" href="#contact" aria-label="WhatsApp">
+        <span class="footer-wa__halo"></span>
+        <span class="footer-wa__ring"></span>
+        <img
+          class="footer-wa__img"
+          src="images/logo.png"
+          alt="Sabioncello logo"
+          loading="lazy"
+        />
+      </div>
+      <div class="container footer__inner">
+        <div>
+          <img src="images/logo-white.png" alt="Sabioncello logo" class="footer__logo" />
+          <p class="footer__text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut
+          </p>
+          <div class="footer__socials">
+            <a href="#" class="footer__social" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="footer__social" aria-label="Instagram">
+              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="footer__social" aria-label="Twitter">
+              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Services</h4>
+          <ul class="footer__list">
+            <li><a href="object-cleaning.html">Object Cleaning</a></li>
+            <li><a href="property-management.html">Property Management</a></li>
+            <li><a href="holiday-rentals.html">Holiday Rentals</a></li>
+            <li><a href="garden-maintenance.html">Garden Maintenance</a></li>
+            <li><a href="pool-maintenance.html">Pool Service</a></li>
+            <li><a href="administrative-assistance.html">Administrative Assistance</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__heading">Information</h4>
+          <ul class="footer__list">
+            <li><a href="#">Imprint</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__heading">Contact</h4>
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            </span>
+            <div>
+              <div class="footer__contact-title">Call Us</div>
+              <div class="footer__contact-sub">+385 (0)99 123 4567</div>
+            </div>
+          </div>
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            </span>
+            <div>
+              <div class="footer__contact-title">Email</div>
+              <div class="footer__contact-sub">info@sabioncello.com</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div class="footer__copyright">
+          © Copyright Sabioncello. All rights reserved
+        </div>
+        <a href="#top" class="footer__to-top" aria-label="Back to top">
+          <i class="fa-solid fa-angle-up" aria-hidden="true"></i>
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>

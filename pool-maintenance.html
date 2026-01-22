@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pool Maintenance – Sabioncello Property Management</title>
+    <!-- FontAwesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- Service page styles -->
+    <link rel="stylesheet" href="services.css" />
+    <!-- Existing script for nav toggle and translations -->
+    <script src="script.js" defer></script>
+  </head>
+  <body id="top">
+    <!-- NAVBAR -->
+    <header class="site-header">
+      <nav class="navbar">
+        <!-- Logo -->
+        <a class="brand" href="index.html">
+          <img class="brand__logo" src="images/logo.png" alt="Sabioncello logo" />
+        </a>
+
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label
+          for="nav-toggle"
+          class="hamburger"
+          aria-label="Toggle navigation"
+          aria-controls="nav-menu"
+          aria-expanded="false"
+        >
+          <i class="fa-solid fa-bars"></i>
+          <i class="fa-solid fa-xmark"></i>
+        </label>
+
+        <!-- Links (desktop + mobile panel) -->
+        <div id="nav-menu" class="nav-right" aria-hidden="true">
+          <ul class="nav-links">
+            <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+            <li><a href="services.html" data-i18n="nav_services">Service</a></li>
+            <li><a href="index.html#about" data-i18n="nav_about">About Us</a></li>
+            <li>
+              <a class="btn btn--pill" href="index.html#contact" data-i18n="nav_contact">Contact Us</a>
+            </li>
+            <!-- Language dropdown -->
+            <li class="lang">
+              <details class="lang__details">
+                <summary class="lang__summary" aria-label="Language">
+                  <span class="lang__flag" aria-hidden="true"></span>
+                  <span class="lang__code">EN</span>
+                  <svg class="chev" viewBox="0 0 20 20" aria-hidden="true">
+                    <path
+                      d="M5.5 7.5L10 12l4.5-4.5"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </summary>
+                <div class="lang__menu" role="menu" aria-label="Language options">
+                  <button type="button" class="lang__item" role="menuitem" data-lang="en">
+                    <span class="lang__flag" aria-hidden="true"></span> English (Engleski)
+                  </button>
+                  <button type="button" class="lang__item" role="menuitem" data-lang="hr">
+                    <span class="lang__flag" aria-hidden="true"></span> Croatian (Hrvatski)
+                  </button>
+                </div>
+              </details>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+      <!-- Hero Section -->
+      <section class="service-hero" style="background-image: url('images/pool-cleaning-jpg.jpg');">
+        <div class="service-hero__content container">
+          <h1 data-i18n="pool_hero_heading">Pool Maintenance</h1>
+          <p data-i18n="pool_hero_subtitle">Safe, clean &amp; well-maintained pools</p>
+        </div>
+      </section>
+
+      <!-- Overview Section -->
+      <section class="service-overview">
+        <div class="container">
+          <h2 data-i18n="pool_overview_heading">Pool Maintenance</h2>
+          <p data-i18n="pool_overview_p1">
+            Sabioncello offers reliable pool maintenance services to ensure your pool remains clean, safe, and ready for use at all times.
+          </p>
+          <p data-i18n="pool_overview_p2">
+            Our service includes regular water quality checks, chemical balancing, filtration system inspection, and thorough cleaning of pool surfaces and surrounding areas.
+          </p>
+          <p data-i18n="pool_overview_p3">
+            We remove debris, monitor equipment performance, and address minor issues before they develop into costly repairs.
+          </p>
+          <p data-i18n="pool_overview_p4">
+            Seasonal opening and closing of pools, as well as weather-related inspections, are also part of our maintenance approach, helping to extend the lifespan of your pool and maintain optimal hygiene standards.
+          </p>
+          <p data-i18n="pool_overview_p5">
+            With professional care and consistent monitoring, Sabioncello ensures your pool on Pelješac meets the highest standards of cleanliness, safety, and comfort for you and your guests.
+          </p>
+        </div>
+      </section>
+
+      <!-- Included Services Section -->
+      <section class="service-included">
+        <div class="container">
+          <div class="included-list">
+            <h3 data-i18n="pool_features_title">Key Features</h3>
+            <ul>
+              <li data-i18n="pool_features_li1">Water quality checks</li>
+              <li data-i18n="pool_features_li2">Chemical balancing</li>
+              <li data-i18n="pool_features_li3">Filtration &amp; equipment inspection</li>
+              <li data-i18n="pool_features_li4">Thorough cleaning of pool and surroundings</li>
+              <li data-i18n="pool_features_li5">Seasonal opening &amp; closing</li>
+            </ul>
+          </div>
+          <div class="included-text">
+            <h3 data-i18n="pool_equipment_title">Professional Tools &amp; Products</h3>
+            <p data-i18n="pool_equipment_p">
+              We use professional-grade equipment and safe chemicals to maintain water clarity and hygiene, ensuring your pool is always safe for use.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Benefits Section -->
+      <section class="service-benefits">
+        <div class="container">
+          <h2 data-i18n="pool_benefits_title">Why Choose Sabioncello</h2>
+          <div class="benefits-grid">
+            <div class="benefit-item">
+              <i class="fa-solid fa-water benefit-icon" aria-hidden="true"></i>
+              <h3 data-i18n="pool_benefit1_title">Clean &amp; Safe Water</h3>
+              <p data-i18n="pool_benefit1_p">
+                Our rigorous checks maintain crystal-clear water and hygienic conditions.
+              </p>
+            </div>
+            <div class="benefit-item">
+              <i class="fa-solid fa-person-swimming benefit-icon" aria-hidden="true"></i>
+              <h3 data-i18n="pool_benefit2_title">Expert Maintenance</h3>
+              <p data-i18n="pool_benefit2_p">
+                Experienced technicians monitor equipment and balance chemicals.
+              </p>
+            </div>
+            <div class="benefit-item">
+              <i class="fa-solid fa-umbrella-beach benefit-icon" aria-hidden="true"></i>
+              <h3 data-i18n="pool_benefit3_title">Preventive Care</h3>
+              <p data-i18n="pool_benefit3_p">
+                Minor issues are addressed early to avoid costly repairs.
+              </p>
+            </div>
+            <div class="benefit-item">
+              <i class="fa-solid fa-clock benefit-icon" aria-hidden="true"></i>
+              <h3 data-i18n="pool_benefit4_title">Seasonal Expertise</h3>
+              <p data-i18n="pool_benefit4_p">
+                We handle seasonal openings/closures and adapt to weather conditions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How To Book Section -->
+      <section class="service-steps">
+        <div class="container">
+          <h2 data-i18n="pool_steps_title">How to Book Our Service</h2>
+          <div class="steps-grid">
+            <div class="step-item">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h3 data-i18n="pool_step1_title">Schedule a consultation</h3>
+                <p data-i18n="pool_step1_p">
+                  Contact us to assess your pool’s maintenance needs.
+                </p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h3 data-i18n="pool_step2_title">Get a tailored plan</h3>
+                <p data-i18n="pool_step2_p">
+                  We propose a customized maintenance schedule and quote.
+                </p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h3 data-i18n="pool_step3_title">Enjoy your pool</h3>
+                <p data-i18n="pool_step3_p">
+                  We handle the maintenance while you relax.
+                </p>
+              </div>
+            </div>
+          </div>
+          <a href="index.html#contact" class="btn btn--dark steps-cta" data-i18n="pool_steps_cta">Book an Appointment</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-wa" href="#contact" aria-label="WhatsApp">
+        <span class="footer-wa__halo"></span>
+        <span class="footer-wa__ring"></span>
+        <img
+          class="footer-wa__img"
+          src="images/logo.png"
+          alt="Sabioncello logo"
+          loading="lazy"
+        />
+      </div>
+      <div class="container footer__inner">
+        <div>
+          <img src="images/logo-white.png" alt="Sabioncello logo" class="footer__logo" />
+          <p class="footer__text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut
+          </p>
+          <div class="footer__socials">
+            <a href="#" class="footer__social" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="footer__social" aria-label="Instagram">
+              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="footer__social" aria-label="Twitter">
+              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Services</h4>
+          <ul class="footer__list">
+            <li><a href="object-cleaning.html">Object Cleaning</a></li>
+            <li><a href="property-management.html">Property Management</a></li>
+            <li><a href="holiday-rentals.html">Holiday Rentals</a></li>
+            <li><a href="garden-maintenance.html">Garden Maintenance</a></li>
+            <li><a href="pool-maintenance.html">Pool Service</a></li>
+            <li><a href="administrative-assistance.html">Administrative Assistance</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__heading">Information</h4>
+          <ul class="footer__list">
+            <li><a href="#">Imprint</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__heading">Contact</h4>
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            </span>
+            <div>
+              <div class="footer__contact-title">Call Us</div>
+              <div class="footer__contact-sub">+385 (0)99 123 4567</div>
+            </div>
+          </div>
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            </span>
+            <div>
+              <div class="footer__contact-title">Email</div>
+              <div class="footer__contact-sub">info@sabioncello.com</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div class="footer__copyright">
+          © Copyright Sabioncello. All rights reserved
+        </div>
+        <a href="#top" class="footer__to-top" aria-label="Back to top">
+          <i class="fa-solid fa-angle-up" aria-hidden="true"></i>
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,744 @@
+/*
+  services.css
+
+  Custom stylesheet for individual service pages on the Sabioncello website.
+  This file includes a subset of styles from the main site (navbar, language
+  dropdown, buttons and footer) and adds new layouts for the service
+  overview, included features, benefits and booking sections. By
+  consolidating these rules here we keep each service page selfÃ¢â‚¬â€˜contained
+  without relying on the global style.css.
+*/
+
+/* =========================
+   Base / Variables
+========================= */
+:root {
+  --bg: #f6f0e6;        /* warm cream used siteÃ¢â‚¬â€˜wide */
+  --text: #111;
+  --muted: #6b6b6b;
+  --accent: #caa24a;    /* warm gold for accents and highlights */
+  --card: #ffffff;
+  --radius: 18px;
+
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.10);
+  --shadow-soft: 0 10px 26px rgba(0, 0, 0, 0.08);
+
+  --container: 1120px;
+  --nav-h: 76px;
+  --break: 720px; /* breakpoint for hamburger */
+
+  /* background for included and steps sections on service pages */
+  --services-bg: #fdf9f2;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  width: 100%;
+  line-height: 1.55;
+}
+
+img { max-width: 100%; display: block; }
+
+.container {
+  width: min(var(--container), calc(100% - 40px));
+  margin: 0 auto;
+}
+
+/* =========================
+   Global transitions & Buttons
+========================= */
+a, button, input, summary, .btn {
+  transition: all 0.2s ease;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 13px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.btn--pill {
+  background: var(--accent);
+  color: #111;
+  box-shadow: 0 10px 18px rgba(202, 162, 74, 0.25);
+}
+
+.btn--pill:hover { filter: brightness(0.98); }
+
+.btn--dark {
+  background: #0f0f0f;
+  color: #fff;
+  padding: 12px 18px;
+  box-shadow: var(--shadow-soft);
+}
+
+.btn--dark:hover { filter: brightness(1.05);
+background-color: #caa24a;}
+
+/* =========================
+   Navbar & Language Dropdown
+========================= */
+.brand__logo{
+  width: 140px;
+  transform: translateY(10px);
+}
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--bg);
+}
+
+.navbar {
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+
+  position: relative; /* so the mobile panel positions correctly */
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #111;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.92;
+}
+
+.nav-links a:hover { opacity: 1; }
+
+/* Language dropdown */
+.lang { position: relative; margin-right: 10px; }
+.lang__details { position: relative; }
+
+.lang__summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.35);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.lang__summary::-webkit-details-marker { display: none; }
+
+.chev {
+  width: 18px;
+  height: 18px;
+  opacity: 0.8;
+  transition: transform 180ms ease;
+}
+.lang__details[open] .chev { transform: rotate(180deg); }
+
+.lang__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  width: 140px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: var(--shadow-soft);
+  padding: 8px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.lang__item {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 10px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lang__item:hover { background: rgba(0,0,0,0.05); }
+
+/* Hamburger (FontAwesome) */
+.nav-toggle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.hamburger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.10);
+  background: rgba(255,255,255,0.35);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  color: #111;
+  margin-right: 10px;
+  position: relative;
+  z-index: 50; /* stay clickable above panel */
+}
+
+.hamburger .fa-xmark { display: none; }
+.nav-toggle:checked + .hamburger .fa-bars { display: none; }
+.nav-toggle:checked + .hamburger .fa-xmark { display: inline-block; }
+
+/* Mobile panel styling */
+@media (max-width: 720px) {
+  .hamburger { display: inline-flex; }
+
+  /*
+     Mobile navigation panel: start hidden and collapsed. We animate the
+     panel by adjusting its max-height, opacity and vertical translation.
+     When the JS toggles the `.is-open` class, the panel expands. The old
+     `nav-toggle:checked` fallback remains for browsers without JS.
+  */
+  .nav-right {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    padding: 14px 20px 18px;
+    background: var(--bg);
+    border-top: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+    z-index: 40;
+    /* initial hidden state */
+    display: block;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition:
+      max-height 0.28s ease,
+      opacity 0.22s ease,
+      transform 0.22s ease;
+  }
+  /* When the `.is-open` class is present (toggled via JS), the menu expands */
+  .nav-right.is-open {
+    max-height: 520px;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  /* Fallback for CSS-only checkbox hack: if nav-toggle is checked, show the panel */
+  .nav-toggle:checked ~ .nav-right {
+    max-height: 520px;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .nav-links a,
+  .btn--pill {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 14px;
+    border-radius: 14px;
+  }
+
+  .lang__summary {
+    width: 100%;
+    justify-content: space-between;
+    border-radius: 14px;
+    padding: 12px 14px;
+  }
+  .lang__menu {
+    position: static;
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+/* =========================
+   Footer
+========================= */
+.site-footer{
+  position: relative;
+  background: #3f5a4c;
+  color: rgba(255,255,255,0.88);
+  padding: 44px 0 18px;
+  overflow: visible;
+}
+
+.footer-wa{
+  position: fixed;
+  right: 22px;
+  bottom: max(22px, env(safe-area-inset-bottom));
+  width: 90px;
+  height: 90px;
+  z-index: 60;
+  pointer-events: auto;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+}
+.footer-wa:hover{ transform: translateY(-2px); }
+.footer-wa:focus-visible{
+  outline: 2px solid rgba(255,255,255,0.9);
+  outline-offset: 6px;
+  border-radius: 999px;
+}
+
+.footer-wa__halo,
+.footer-wa__ring,
+.footer-wa__img{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+}
+
+.footer-wa__halo{
+  width: 128px;
+  height: 128px;
+  background: rgba(66, 185, 95, 0.22);
+}
+.footer-wa__ring{
+  width: 88px;
+  height: 88px;
+  background: #ffffff;
+}
+.footer-wa__img{
+  width: 78px;
+  height: 78px;
+  object-fit: cover;
+}
+
+.footer__inner{
+  display: grid;
+  grid-template-columns: 1.25fr 0.8fr 1fr 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.footer__logo{
+  height: 40px;
+  width: auto;
+  margin-bottom: 12px;
+  filter: brightness(1.15);
+}
+
+.footer__text{
+  margin: 0 0 14px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.72);
+  max-width: 34ch;
+}
+
+.footer__socials{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.footer__social{
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.22);
+  color: rgba(255,255,255,0.92);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 12px;
+}
+
+.footer__heading{
+  font-weight: 900;
+  font-size: 12px;
+  margin-bottom: 10px;
+  color: rgba(255,255,255,0.92);
+}
+
+.footer__list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.footer__list a{
+  text-decoration: none;
+  color: rgba(255,255,255,0.70);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.footer__contact-item{
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: 12px;
+}
+.footer__contact-icon{
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.22);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+.footer__contact-title{
+  font-size: 12px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 2px;
+}
+.footer__contact-sub{
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.70);
+}
+.footer__bottom{
+  margin-top: 26px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.footer__copyright{
+  font-size: 12px;
+  color: rgba(255,255,255,0.70);
+  text-align: center;
+}
+.footer__to-top{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.18);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: rgba(255,255,255,0.92);
+  font-weight: 900;
+}
+
+@media (max-width: 980px){
+  .footer__inner{
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
+/* =========================
+   Service Hero Section
+========================= */
+.service-hero {
+  position: relative;
+  min-height: 440px;
+  padding: 120px 0 80px;
+  display: flex;
+  align-items: flex-end;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.65)), url('images/object-cleaning-hero.png');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.service-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45); /* ← control darkness here */
+  z-index: 1;
+}
+
+.service-hero__content {
+  max-width: 720px;
+  margin: 0;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-hero h1 {
+  margin: 0 0 16px;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+
+}
+.service-hero p {
+  font-size: clamp(14px, 2vw, 18px);
+  line-height: 1.5;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* =========================
+   Overview Section
+========================= */
+.service-overview {
+  padding: 64px 0;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.service-overview h2 {
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-size: clamp(22px, 3vw, 32px);
+  letter-spacing: -0.4px;
+  text-align: center;
+}
+.service-overview p {
+  margin-bottom: 18px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+  text-align: center;
+}
+.service-overview .container {
+  max-width: 760px;
+}
+
+/* =========================
+   Included Services Section
+========================= */
+.service-included {
+  padding: 64px 0;
+  background: var(--services-bg);
+}
+.service-included .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: flex-start;
+}
+.included-list {
+  flex: 1 1 300px;
+}
+.included-list h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 20px;
+  letter-spacing: -0.3px;
+}
+.included-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--text);
+}
+.included-list li::before {
+  content: '\f00c'; /* FontAwesome check icon */
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  margin-right: 8px;
+  color: var(--accent);
+}
+
+.included-text {
+  flex: 1 1 380px;
+}
+.included-text h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 20px;
+  letter-spacing: -0.3px;
+}
+.included-text p {
+  margin-bottom: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+@media (max-width: 840px) {
+  .service-included .container {
+    flex-direction: column;
+  }
+}
+
+/* =========================
+   Benefits Section
+========================= */
+.service-benefits {
+  padding: 64px 0;
+  background: var(--bg);
+}
+.service-benefits h2 {
+  margin-top: 0;
+  margin-bottom: 32px;
+  font-size: clamp(22px, 3vw, 32px);
+  text-align: center;
+}
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.benefit-item {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 26px 20px;
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+}
+.benefit-icon {
+  font-size: 32px;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.benefit-item h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 800;
+}
+.benefit-item p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 980px) {
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   Steps / How to Book Section
+========================= */
+.service-steps {
+  padding: 64px 0 80px;
+  background: var(--services-bg);
+}
+.service-steps h2 {
+  margin-top: 0;
+  margin-bottom: 32px;
+  font-size: clamp(22px, 3vw, 32px);
+  text-align: center;
+}
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.step-item {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.step-number {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+.step-content h3 {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 800;
+}
+.step-content p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.steps-cta {
+  display: inline-block;
+  text-align: center;
+  max-width: 220px;
+  margin: 0 auto;
+}
+
+@media (max-width: 980px) {
+  .steps-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+  .steps-cta {
+    width: 100%;
+  }
+}

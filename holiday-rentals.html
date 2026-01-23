@@ -1,280 +1,267 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Holiday Rentals – Sabioncello Property Management</title>
-    <!-- FontAwesome for icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-    <!-- Service page styles -->
-    <link rel="stylesheet" href="services.css" />
-    <!-- Existing script for nav toggle and translations -->
-    <script src="script.js" defer></script>
-  </head>
-  <body id="top">
-    <!-- NAVBAR -->
-    <header class="site-header">
-      <nav class="navbar">
-        <!-- Logo -->
-        <a class="brand" href="index.html">
-          <img class="brand__logo" src="images/logo.png" alt="Sabioncello logo" />
-        </a>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&family=Merriweather:wght@300;400&display=swap" rel="stylesheet">
 
-        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
-        <label
-          for="nav-toggle"
-          class="hamburger"
-          aria-label="Toggle navigation"
-          aria-controls="nav-menu"
-          aria-expanded="false"
-        >
-          <i class="fa-solid fa-bars"></i>
-          <i class="fa-solid fa-xmark"></i>
-        </label>
-
-        <!-- Links (desktop + mobile panel) -->
-        <div id="nav-menu" class="nav-right" aria-hidden="true">
-          <ul class="nav-links">
-            <li><a href="index.html" data-i18n="nav_home">Home</a></li>
-            <li><a href="services.html" data-i18n="nav_services">Service</a></li>
-            <li><a href="index.html#about" data-i18n="nav_about">About Us</a></li>
-            <li>
-              <a class="btn btn--pill" href="index.html#contact" data-i18n="nav_contact">Contact Us</a>
-            </li>
-            <!-- Language dropdown -->
-            <li class="lang">
-              <details class="lang__details">
-                <summary class="lang__summary" aria-label="Language">
-                  <span class="lang__flag" aria-hidden="true"></span>
-                  <span class="lang__code">EN</span>
-                  <svg class="chev" viewBox="0 0 20 20" aria-hidden="true">
-                    <path
-                      d="M5.5 7.5L10 12l4.5-4.5"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                    />
-                  </svg>
-                </summary>
-                <div class="lang__menu" role="menu" aria-label="Language options">
-                  <button type="button" class="lang__item" role="menuitem" data-lang="en">
-                    <span class="lang__flag" aria-hidden="true"></span> English (Engleski)
+<title>Holiday Rentals – Sabioncello Property Management</title>
+<!-- FontAwesome for icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<!-- Service page styles -->
+<link href="services.css" rel="stylesheet"/>
+<!-- Existing script for nav toggle and translations -->
+<script defer="" src="script.js"></script>
+</head>
+<body id="top">
+<!-- NAVBAR -->
+<header class="site-header">
+<nav class="navbar">
+<!-- Logo -->
+<a class="brand" href="index.html">
+<img alt="Sabioncello logo" class="brand__logo" src="images/logo.png"/>
+</a>
+<input class="nav-toggle" id="nav-toggle" type="checkbox"/>
+<label aria-controls="nav-menu" aria-expanded="false" aria-label="Toggle navigation" class="hamburger" for="nav-toggle">
+<i class="fa-solid fa-bars"></i>
+<i class="fa-solid fa-xmark"></i>
+</label>
+<!-- Links (desktop + mobile panel) -->
+<div aria-hidden="true" class="nav-right" id="nav-menu">
+<ul class="nav-links">
+<li><a data-i18n="nav_home" href="index.html">Home</a></li>
+<li><a data-i18n="nav_services" href="services.html">Service</a></li>
+<li><a data-i18n="nav_about" href="index.html#about">About Us</a></li>
+<li>
+<a class="btn btn--pill" data-i18n="nav_contact" href="index.html#contact">Contact Us</a>
+</li>
+<!-- Language dropdown -->
+<li class="lang">
+<details class="lang__details">
+<summary aria-label="Language" class="lang__summary">
+<span aria-hidden="true" class="lang__flag"></span>
+<span class="lang__code">EN</span>
+<svg aria-hidden="true" class="chev" viewbox="0 0 20 20">
+<path d="M5.5 7.5L10 12l4.5-4.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</summary>
+<div aria-label="Language options" class="lang__menu" role="menu">
+<button class="lang__item" data-lang="en" role="menuitem" type="button">
+<span aria-hidden="true" class="lang__flag"></span> English (Engleski)
                   </button>
-                  <button type="button" class="lang__item" role="menuitem" data-lang="hr">
-                    <span class="lang__flag" aria-hidden="true"></span> Croatian (Hrvatski)
+<button class="lang__item" data-lang="hr" role="menuitem" type="button">
+<span aria-hidden="true" class="lang__flag"></span> Croatian (Hrvatski)
                   </button>
-                </div>
-              </details>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-
-    <!-- MAIN CONTENT -->
-    <main>
-      <!-- Hero Section -->
-      <section class="service-hero" style="background-image: url('images/holiday-rental.jpg');">
-        <div class="service-hero__content container">
-          <h1 data-i18n="hrent_hero_heading">Holiday Rentals</h1>
-          <p data-i18n="hrent_hero_subtitle">Complete service for a smooth holiday rental</p>
-        </div>
-      </section>
-
-      <!-- Overview Section -->
-      <section class="service-overview">
-        <div class="container">
-          <h2 data-i18n="hrent_overview_heading">Holiday Rentals</h2>
-          <p data-i18n="hrent_overview_p1">
-            Sabioncello provides professional holiday rental services that ensure your property is prepared and managed for guests, offering a smooth and seamless experience.
+</div>
+</details>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<!-- MAIN CONTENT -->
+<main>
+<!-- Hero Section -->
+<section class="service-hero" style="background-image: url('images/holiday-rental.jpg');">
+<div class="service-hero__content container">
+<h1 data-i18n="hrent_hero_heading">Holiday Rentals</h1>
+<p data-i18n="hrent_hero_subtitle">Complete service for a smooth holiday rental</p>
+</div>
+</section>
+<!-- Overview Section -->
+<section class="service-overview">
+<div class="container">
+<h2 data-i18n="hrent_overview_heading">ALL-ROUND CAREFREE SERVICE FOR YOUR HOLIDAY PROPERTY</h2>
+<p data-i18n="hrent_overview_p1">
+            At Sabioncello, we help property owners maintain consistently high standards, even during peak season when fast turnovers and last-minute arrivals can be challenging. We take care of the details, so your guests enjoy a smooth and stress-free stay.
           </p>
-          <p data-i18n="hrent_overview_p2">
+<p data-i18n="hrent_overview_p2">
             Our experienced team handles cleaning, guest turnover, and property upkeep with expert care and attention, letting you enjoy stress‑free rentals.
           </p>
-        </div>
-      </section>
-
-      <!-- Included Services Section -->
-      <section class="service-included">
-        <div class="container">
-          <div class="included-list">
-            <h3 data-i18n="hrent_features_title">Key Features</h3>
-            <ul>
-              <li data-i18n="hrent_features_li1">10 Years of Experience</li>
-              <li data-i18n="hrent_features_li2">Thorough cleaning between stays</li>
-              <li data-i18n="hrent_features_li3">Guest turnover management</li>
-              <li data-i18n="hrent_features_li4">High-quality equipment &amp; products</li>
-              <li data-i18n="hrent_features_li5">Custom service packages</li>
-            </ul>
-          </div>
-          <div class="included-text">
-            <h3 data-i18n="hrent_equipment_title">High‑Quality Equipment &amp; Products</h3>
-            <p data-i18n="hrent_equipment_p">
+</div>
+</section>
+<!-- Included Services Section -->
+<section class="service-split-section">
+<div class="service-split-container">
+<div class="service-split-left">
+  <h1>WE TAKE CARE OF IT</h1>
+<div class="included-list">
+<h3 data-i18n="hrent_features_title">Key Features</h3>
+<ul>
+<li data-i18n="hrent_features_li1">10 Years of Experience</li>
+<li data-i18n="hrent_features_li2">Thorough cleaning between stays</li>
+<li data-i18n="hrent_features_li3">Guest turnover management</li>
+<li data-i18n="hrent_features_li4">High-quality equipment &amp; products</li>
+<li data-i18n="hrent_features_li5">Custom service packages</li>
+</ul>
+</div>
+</div>
+<div class="service-split-right">
+<div class="service-image-box">
+<img alt="" src="images/holiday2.jpeg"/>
+</div>
+</div>
+</div>
+</section>
+<section class="service-text-section">
+<div class="service-text-container">
+<div class="included-text">
+<h3 data-i18n="hrent_equipment_title">High‑Quality Equipment &amp; Products</h3>
+<p data-i18n="hrent_equipment_p">
               Deep cleaning services go far beyond standard, everyday cleaning. They require professional tools, carefully selected products and proven techniques to ensure a home is thoroughly cleaned and properly disinfected. At Sabioncello, we never compromise on quality. All our services are performed using industry-leading equipment and premium cleaning products, ensuring consistent, high-level results for every property we maintain. By combining high-quality tools with environmentally friendly cleaning solutions, we work systematically and efficiently to achieve exceptional cleanliness within a reasonable timeframe.
             </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Benefits Section -->
-      <section class="service-benefits">
-        <div class="container">
-          <h2 data-i18n="hrent_benefits_title">Why Choose Sabioncello</h2>
-          <div class="benefits-grid">
-            <div class="benefit-item">
-              <i class="fa-solid fa-award benefit-icon" aria-hidden="true"></i>
-              <h3 data-i18n="hrent_benefit1_title">Experience &amp; Reliability</h3>
-              <p data-i18n="hrent_benefit1_p">
+</div>
+</div>
+</section>
+<!-- Benefits Section -->
+<section class="service-benefits">
+<div class="container">
+<h2 data-i18n="hrent_benefits_title">Why Choose Sabioncello</h2>
+<div class="benefits-grid">
+<div class="benefit-item">
+<i aria-hidden="true" class="fa-solid fa-award benefit-icon"></i>
+<h3 data-i18n="hrent_benefit1_title">Experience &amp; Reliability</h3>
+<p data-i18n="hrent_benefit1_p">
                 We bring years of experience and high standards to rental management.
               </p>
-            </div>
-            <div class="benefit-item">
-              <i class="fa-solid fa-people-group benefit-icon" aria-hidden="true"></i>
-              <h3 data-i18n="hrent_benefit2_title">Guest Satisfaction</h3>
-              <p data-i18n="hrent_benefit2_p">
+</div>
+<div class="benefit-item">
+<i aria-hidden="true" class="fa-solid fa-people-group benefit-icon"></i>
+<h3 data-i18n="hrent_benefit2_title">Guest Satisfaction</h3>
+<p data-i18n="hrent_benefit2_p">
                 We ensure guests have a pleasant stay and leave positive reviews.
               </p>
-            </div>
-            <div class="benefit-item">
-              <i class="fa-solid fa-broom benefit-icon" aria-hidden="true"></i>
-              <h3 data-i18n="hrent_benefit3_title">Certified Staff</h3>
-              <p data-i18n="hrent_benefit3_p">
+</div>
+<div class="benefit-item">
+<i aria-hidden="true" class="fa-solid fa-broom benefit-icon"></i>
+<h3 data-i18n="hrent_benefit3_title">Certified Staff</h3>
+<p data-i18n="hrent_benefit3_p">
                 Our team of professionals is dedicated to every detail.
               </p>
-            </div>
-            <div class="benefit-item">
-              <i class="fa-solid fa-check-circle benefit-icon" aria-hidden="true"></i>
-              <h3 data-i18n="hrent_benefit4_title">Reliability</h3>
-              <p data-i18n="hrent_benefit4_p">
+</div>
+<div class="benefit-item">
+<i aria-hidden="true" class="fa-solid fa-check-circle benefit-icon"></i>
+<h3 data-i18n="hrent_benefit4_title">Reliability</h3>
+<p data-i18n="hrent_benefit4_p">
                 We tailor our service to your needs and provide peace of mind.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- How To Book Section -->
-      <section class="service-steps">
-        <div class="container">
-          <h2 data-i18n="hrent_steps_title">How to Book Our Service</h2>
-          <div class="steps-grid">
-            <div class="step-item">
-              <div class="step-number">1</div>
-              <div class="step-content">
-                <h3 data-i18n="hrent_step1_title">Make an appointment</h3>
-                <p data-i18n="hrent_step1_p">
+</div>
+</div>
+</div>
+</section>
+<!-- How To Book Section -->
+<section class="service-steps">
+<div class="container">
+<h2 data-i18n="hrent_steps_title">How to Book Our Service</h2>
+<div class="steps-grid">
+<div class="step-item">
+<div class="step-number">1</div>
+<div class="step-content">
+<h3 data-i18n="hrent_step1_title">Make an appointment</h3>
+<p data-i18n="hrent_step1_p">
                   Arrange appointments easily via our booking calendar or by phone.
                 </p>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-number">2</div>
-              <div class="step-content">
-                <h3 data-i18n="hrent_step2_title">Needs analysis &amp; offer</h3>
-                <p data-i18n="hrent_step2_p">
+</div>
+</div>
+<div class="step-item">
+<div class="step-number">2</div>
+<div class="step-content">
+<h3 data-i18n="hrent_step2_title">Needs analysis &amp; offer</h3>
+<p data-i18n="hrent_step2_p">
                   During an on‑site appointment, we provide a free, non‑binding quote including a needs analysis.
                 </p>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-number">3</div>
-              <div class="step-content">
-                <h3 data-i18n="hrent_step3_title">Service implementation</h3>
-                <p data-i18n="hrent_step3_p">
+</div>
+</div>
+<div class="step-item">
+<div class="step-number">3</div>
+<div class="step-content">
+<h3 data-i18n="hrent_step3_title">Service implementation</h3>
+<p data-i18n="hrent_step3_p">
                   After work is completed, you receive a clear report with photos.
                 </p>
-              </div>
-            </div>
-          </div>
-          <a href="index.html#contact" class="btn btn--dark steps-cta" data-i18n="hrent_steps_cta">Book an Appointment</a>
-        </div>
-      </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="site-footer">
-      <div class="footer-wa" href="#contact" aria-label="WhatsApp">
-        <span class="footer-wa__halo"></span>
-        <span class="footer-wa__ring"></span>
-        <img
-          class="footer-wa__img"
-          src="images/logo.png"
-          alt="Sabioncello logo"
-          loading="lazy"
-        />
-      </div>
-      <div class="container footer__inner">
-        <div>
-          <img src="images/logo-white.png" alt="Sabioncello logo" class="footer__logo" />
-          <p class="footer__text">
+</div>
+</div>
+</div>
+<a class="btn btn--dark steps-cta" data-i18n="hrent_steps_cta" href="index.html#contact">Book an Appointment</a>
+</div>
+</section>
+</main>
+<!-- FOOTER -->
+<footer class="site-footer">
+<div aria-label="WhatsApp" class="footer-wa" href="index.html">
+<span class="footer-wa__halo"></span>
+<span class="footer-wa__ring"></span>
+<img alt="Sabioncello logo" class="footer-wa__img" loading="lazy" src="images/whatsapp.png"/>
+</div>
+<div class="container footer__inner">
+<div>
+<img alt="Sabioncello logo" class="footer__logo" src="images/logo-white.png"/>
+<p class="footer__text">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
             eiusmod tempor incididunt ut
           </p>
-          <div class="footer__socials">
-            <a href="#" class="footer__social" aria-label="Facebook">
-              <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="footer__social" aria-label="Instagram">
-              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="footer__social" aria-label="Twitter">
-              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-        <div>
-          <h4 class="footer__heading">Services</h4>
-          <ul class="footer__list">
-            <li><a href="object-cleaning.html">Object Cleaning</a></li>
-            <li><a href="property-management.html">Property Management</a></li>
-            <li><a href="holiday-rentals.html">Holiday Rentals</a></li>
-            <li><a href="garden-maintenance.html">Garden Maintenance</a></li>
-            <li><a href="pool-maintenance.html">Pool Service</a></li>
-            <li><a href="administrative-assistance.html">Administrative Assistance</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer__heading">Information</h4>
-          <ul class="footer__list">
-            <li><a href="#">Imprint</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer__heading">Contact</h4>
-          <div class="footer__contact-item">
-            <span class="footer__contact-icon">
-              <i class="fa-solid fa-phone" aria-hidden="true"></i>
-            </span>
-            <div>
-              <div class="footer__contact-title">Call Us</div>
-              <div class="footer__contact-sub">+385 (0)99 123 4567</div>
-            </div>
-          </div>
-          <div class="footer__contact-item">
-            <span class="footer__contact-icon">
-              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-            </span>
-            <div>
-              <div class="footer__contact-title">Email</div>
-              <div class="footer__contact-sub">info@sabioncello.com</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="footer__bottom">
-        <div class="footer__copyright">
+<div class="footer__socials">
+<a aria-label="Facebook" class="footer__social" href="#">
+<i aria-hidden="true" class="fa-brands fa-facebook-f"></i>
+</a>
+<a aria-label="Instagram" class="footer__social" href="#">
+<i aria-hidden="true" class="fa-brands fa-instagram"></i>
+</a>
+<a aria-label="Twitter" class="footer__social" href="#">
+<i aria-hidden="true" class="fa-brands fa-x-twitter"></i>
+</a>
+</div>
+</div>
+<div>
+<h4 class="footer__heading">Services</h4>
+<ul class="footer__list">
+<li><a href="object-cleaning.html">Object Cleaning</a></li>
+<li><a href="property-management.html">Property Management</a></li>
+<li><a href="holiday-rentals.html">Holiday Rentals</a></li>
+<li><a href="garden-maintenance.html">Garden Maintenance</a></li>
+<li><a href="pool-maintenance.html">Pool Service</a></li>
+<li><a href="administrative-assistance.html">Administrative Assistance</a></li>
+</ul>
+</div>
+<div>
+<h4 class="footer__heading">Information</h4>
+<ul class="footer__list">
+<li><a href="#">Imprint</a></li>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="index.html#contact">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="footer__heading">Contact</h4>
+<div class="footer__contact-item">
+<span class="footer__contact-icon">
+<i aria-hidden="true" class="fa-solid fa-phone"></i>
+</span>
+<div>
+<div class="footer__contact-title">Call Us</div>
+<div class="footer__contact-sub">+385 (0)99 123 4567</div>
+</div>
+</div>
+<div class="footer__contact-item">
+<span class="footer__contact-icon">
+<i aria-hidden="true" class="fa-solid fa-envelope"></i>
+</span>
+<div>
+<div class="footer__contact-title">Email</div>
+<div class="footer__contact-sub">info@sabioncello.com</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer__bottom">
+<div class="footer__copyright">
           © Copyright Sabioncello. All rights reserved
         </div>
-        <a href="#top" class="footer__to-top" aria-label="Back to top">
-          <i class="fa-solid fa-angle-up" aria-hidden="true"></i>
-        </a>
-      </div>
-    </footer>
-  </body>
+<a aria-label="Back to top" class="footer__to-top" href="#top">
+<i aria-hidden="true" class="fa-solid fa-angle-up"></i>
+</a>
+</div>
+</footer>
+</body>
 </html>

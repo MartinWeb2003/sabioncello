@@ -1,282 +1,268 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Property Management – Sabioncello Property Management</title>
-    <!-- FontAwesome for icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-    <!-- Service page styles -->
-    <link rel="stylesheet" href="services.css" />
-    <!-- Existing script for nav toggle and translations -->
-    <script src="script.js" defer></script>
-  </head>
-  <body id="top">
-    <!-- NAVBAR -->
-    <header class="site-header">
-      <nav class="navbar">
-        <!-- Logo -->
-        <a class="brand" href="index.html">
-          <img class="brand__logo" src="images/logo.png" alt="Sabioncello logo" />
-        </a>
-
-        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
-        <label
-          for="nav-toggle"
-          class="hamburger"
-          aria-label="Toggle navigation"
-          aria-controls="nav-menu"
-          aria-expanded="false"
-        >
-          <i class="fa-solid fa-bars"></i>
-          <i class="fa-solid fa-xmark"></i>
-        </label>
-
-        <!-- Links (desktop + mobile panel) -->
-        <div id="nav-menu" class="nav-right" aria-hidden="true">
-          <ul class="nav-links">
-            <li><a href="index.html" data-i18n="nav_home">Home</a></li>
-            <li><a href="services.html" data-i18n="nav_services">Service</a></li>
-            <li><a href="index.html#about" data-i18n="nav_about">About Us</a></li>
-            <li>
-              <a class="btn btn--pill" href="index.html#contact" data-i18n="nav_contact">Contact Us</a>
-            </li>
-            <!-- Language dropdown -->
-            <li class="lang">
-              <details class="lang__details">
-                <summary class="lang__summary" aria-label="Language">
-                  <span class="lang__flag" aria-hidden="true"></span>
-                  <span class="lang__code">EN</span>
-                  <svg class="chev" viewBox="0 0 20 20" aria-hidden="true">
-                    <path
-                      d="M5.5 7.5L10 12l4.5-4.5"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                    />
-                  </svg>
-                </summary>
-                <div class="lang__menu" role="menu" aria-label="Language options">
-                  <button type="button" class="lang__item" role="menuitem" data-lang="en">
-                    <span class="lang__flag" aria-hidden="true"></span> English (Engleski)
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Property Management – Sabioncello Property Management</title>
+<!-- FontAwesome for icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<!-- Service page styles -->
+<link href="services.css" rel="stylesheet"/>
+<!-- Existing script for nav toggle and translations -->
+<script defer="" src="script.js"></script>
+</head>
+<body id="top">
+<!-- NAVBAR -->
+<header class="site-header">
+<nav class="navbar">
+<!-- Logo -->
+<a class="brand" href="index.html">
+<img alt="Sabioncello logo" class="brand__logo" src="images/logo.png"/>
+</a>
+<input class="nav-toggle" id="nav-toggle" type="checkbox"/>
+<label aria-controls="nav-menu" aria-expanded="false" aria-label="Toggle navigation" class="hamburger" for="nav-toggle">
+<i class="fa-solid fa-bars"></i>
+<i class="fa-solid fa-xmark"></i>
+</label>
+<!-- Links (desktop + mobile panel) -->
+<div aria-hidden="true" class="nav-right" id="nav-menu">
+<ul class="nav-links">
+<li><a data-i18n="nav_home" href="index.html">Home</a></li>
+<li><a data-i18n="nav_services" href="services.html">Service</a></li>
+<li><a data-i18n="nav_about" href="index.html#about">About Us</a></li>
+<li>
+<a class="btn btn--pill" data-i18n="nav_contact" href="index.html#contact">Contact Us</a>
+</li>
+<!-- Language dropdown -->
+<li class="lang">
+<details class="lang__details">
+<summary aria-label="Language" class="lang__summary">
+<span aria-hidden="true" class="lang__flag"></span>
+<span class="lang__code">EN</span>
+<svg aria-hidden="true" class="chev" viewbox="0 0 20 20">
+<path d="M5.5 7.5L10 12l4.5-4.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</summary>
+<div aria-label="Language options" class="lang__menu" role="menu">
+<button class="lang__item" data-lang="en" role="menuitem" type="button">
+<span aria-hidden="true" class="lang__flag"></span> English (Engleski)
                   </button>
-                  <button type="button" class="lang__item" role="menuitem" data-lang="hr">
-                    <span class="lang__flag" aria-hidden="true"></span> Croatian (Hrvatski)
+<button class="lang__item" data-lang="hr" role="menuitem" type="button">
+<span aria-hidden="true" class="lang__flag"></span> Croatian (Hrvatski)
                   </button>
-                </div>
-              </details>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-
-    <!-- MAIN CONTENT -->
-    <main>
-      <!-- Hero Section -->
-      <section class="service-hero" style="background-image: url('images/property-management.jpg');">
-        <div class="service-hero__content container">
-          <h1 data-i18n="pm_hero_heading">Property Management</h1>
-          <p data-i18n="pm_hero_subtitle">We take care of your property all year round</p>
-        </div>
-      </section>
-
-      <!-- Overview Section -->
-      <section class="service-overview">
-        <div class="container">
-          <h2 data-i18n="pm_overview_heading">We Take Care of Your Property</h2>
-          <p data-i18n="pm_overview_p1">
+</div>
+</details>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<!-- MAIN CONTENT -->
+<main>
+<!-- Hero Section -->
+<section class="service-hero" style="background-image: url('images/property-management.jpg');">
+<div class="service-hero__content container">
+<h1 data-i18n="pm_hero_heading">Property Management</h1>
+<p data-i18n="pm_hero_subtitle">We take care of your property all year round</p>
+</div>
+</section>
+<!-- Overview Section -->
+<section class="service-overview">
+<div class="container">
+<h2 data-i18n="pm_overview_heading">We Take Care of Your Property</h2>
+<p data-i18n="pm_overview_p1">
             The Sabioncello team ensures your property is carefully maintained and protected through regular inspections designed to preserve its long-term value.
           </p>
-          <p data-i18n="pm_overview_p2">
+<p data-i18n="pm_overview_p2">
             As part of our property management service, we routinely air out the property to reduce moisture and help prevent mold growth. All water systems are flushed on a weekly basis to minimize the risk of Legionella bacteria development. We also check for weather-related damage and any signs of unauthorized access or burglary.
           </p>
-          <p data-i18n="pm_overview_p3">
+<p data-i18n="pm_overview_p3">
             Each visit is thoroughly documented in a detailed inspection and service report, which is then shared with the property owner for complete transparency and peace of mind.
           </p>
-        </div>
-      </section>
-
-      <!-- Included Services Section -->
-      <section class="service-included">
-        <div class="container">
-          <div class="included-list">
-            <h3 data-i18n="pm_features_title">Your Benefits</h3>
-            <ul>
-              <li data-i18n="pm_features_li1">All-round protection for your property – damage is detected and repaired early, before major costs arise</li>
-              <li data-i18n="pm_features_li2">Reliable on-site support – from minor repairs to emergency services</li>
-              <li data-i18n="pm_features_li3">Transparency through photo documentation – detailed feedback after each inspection</li>
-              <li data-i18n="pm_features_li4">Save time &amp; worries – we organise and maintain your property</li>
-            </ul>
-          </div>
-          <div class="included-text">
-            <h3 data-i18n="pm_equipment_title">Comprehensive Care</h3>
-            <p data-i18n="pm_equipment_p">
+</div>
+</section>
+<!-- Included Services Section -->
+<section class="service-split-section">
+<div class="service-split-container">
+<div class="service-split-left">
+<div class="included-list">
+<h3 data-i18n="pm_features_title">Your Benefits</h3>
+<ul>
+<li data-i18n="pm_features_li1">All-round protection for your property – damage is detected and repaired early, before major costs arise</li>
+<li data-i18n="pm_features_li2">Reliable on-site support – from minor repairs to emergency services</li>
+<li data-i18n="pm_features_li3">Transparency through photo documentation – detailed feedback after each inspection</li>
+<li data-i18n="pm_features_li4">Save time &amp; worries – we organise and maintain your property</li>
+</ul>
+</div>
+</div>
+<div class="service-split-right">
+<div class="service-image-box">
+<img alt="" src="images/property2.jpeg"/>
+</div>
+</div>
+</div>
+</section>
+<section class="service-text-section">
+<div class="service-text-container">
+<div class="included-text">
+<h3 data-i18n="pm_equipment_title">Comprehensive Care</h3>
+<p data-i18n="pm_equipment_p">
               Our property management service includes regular airing, flushing water systems, and checking for damage or unauthorized access, ensuring your property remains in optimal condition and safe at all times.
             </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Benefits Section -->
-      <section class="service-benefits">
-        <div class="container">
-          <h2 data-i18n="pm_benefits_title">Why Choose Our Property Management</h2>
-          <div class="benefits-grid">
-            <div class="benefit-item">
-              <i class="fa-solid fa-shield-halved benefit-icon" aria-hidden="true"></i>
-              <h3 data-i18n="pm_benefit1_title">All-Round Protection</h3>
-              <p data-i18n="pm_benefit1_p">
+</div>
+</div>
+</section>
+<!-- Benefits Section -->
+<section class="service-benefits">
+<div class="container">
+<h2 data-i18n="pm_benefits_title">Why Choose Our Property Management</h2>
+<div class="benefits-grid">
+<div class="benefit-item">
+<i aria-hidden="true" class="fa-solid fa-shield-halved benefit-icon"></i>
+<h3 data-i18n="pm_benefit1_title">All-Round Protection</h3>
+<p data-i18n="pm_benefit1_p">
                 Regular inspections detect damage early, preventing costly repairs and preserving value.
               </p>
-            </div>
-            <div class="benefit-item">
-              <i class="fa-solid fa-hands-holding-circle benefit-icon" aria-hidden="true"></i>
-              <h3 data-i18n="pm_benefit2_title">Reliable Support</h3>
-              <p data-i18n="pm_benefit2_p">
+</div>
+<div class="benefit-item">
+<i aria-hidden="true" class="fa-solid fa-hands-holding-circle benefit-icon"></i>
+<h3 data-i18n="pm_benefit2_title">Reliable Support</h3>
+<p data-i18n="pm_benefit2_p">
                 We coordinate repairs, tradespeople, and emergency services directly and personally.
               </p>
-            </div>
-            <div class="benefit-item">
-              <i class="fa-solid fa-camera benefit-icon" aria-hidden="true"></i>
-              <h3 data-i18n="pm_benefit3_title">Transparent Documentation</h3>
-              <p data-i18n="pm_benefit3_p">
+</div>
+<div class="benefit-item">
+<i aria-hidden="true" class="fa-solid fa-camera benefit-icon"></i>
+<h3 data-i18n="pm_benefit3_title">Transparent Documentation</h3>
+<p data-i18n="pm_benefit3_p">
                 After each inspection, receive detailed reports with photos for maximum transparency.
               </p>
-            </div>
-            <div class="benefit-item">
-              <i class="fa-solid fa-clock benefit-icon" aria-hidden="true"></i>
-              <h3 data-i18n="pm_benefit4_title">Save Time &amp; Worries</h3>
-              <p data-i18n="pm_benefit4_p">
+</div>
+<div class="benefit-item">
+<i aria-hidden="true" class="fa-solid fa-clock benefit-icon"></i>
+<h3 data-i18n="pm_benefit4_title">Save Time &amp; Worries</h3>
+<p data-i18n="pm_benefit4_p">
                 Relax while we handle the organisation and maintenance of your property.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- How To Book Section -->
-      <section class="service-steps">
-        <div class="container">
-          <h2 data-i18n="pm_steps_title">How to Start</h2>
-          <div class="steps-grid">
-            <div class="step-item">
-              <div class="step-number">1</div>
-              <div class="step-content">
-                <h3 data-i18n="pm_step1_title">Contact Us</h3>
-                <p data-i18n="pm_step1_p">
+</div>
+</div>
+</div>
+</section>
+<!-- How To Book Section -->
+<section class="service-steps">
+<div class="container">
+<h2 data-i18n="pm_steps_title">How to Start</h2>
+<div class="steps-grid">
+<div class="step-item">
+<div class="step-number">1</div>
+<div class="step-content">
+<h3 data-i18n="pm_step1_title">Contact Us</h3>
+<p data-i18n="pm_step1_p">
                   Reach out via phone or email to discuss your property’s needs.
                 </p>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-number">2</div>
-              <div class="step-content">
-                <h3 data-i18n="pm_step2_title">Needs Analysis &amp; Offer</h3>
-                <p data-i18n="pm_step2_p">
+</div>
+</div>
+<div class="step-item">
+<div class="step-number">2</div>
+<div class="step-content">
+<h3 data-i18n="pm_step2_title">Needs Analysis &amp; Offer</h3>
+<p data-i18n="pm_step2_p">
                   We conduct a needs analysis and provide a non‑binding offer.
                 </p>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-number">3</div>
-              <div class="step-content">
-                <h3 data-i18n="pm_step3_title">Ongoing Care</h3>
-                <p data-i18n="pm_step3_p">
+</div>
+</div>
+<div class="step-item">
+<div class="step-number">3</div>
+<div class="step-content">
+<h3 data-i18n="pm_step3_title">Ongoing Care</h3>
+<p data-i18n="pm_step3_p">
                   We manage your property with regular inspections and updates.
                 </p>
-              </div>
-            </div>
-          </div>
-          <a href="index.html#contact" class="btn btn--dark steps-cta" data-i18n="pm_steps_cta">Get in Touch</a>
-        </div>
-      </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="site-footer">
-      <div class="footer-wa" href="#contact" aria-label="WhatsApp">
-        <span class="footer-wa__halo"></span>
-        <span class="footer-wa__ring"></span>
-        <img
-          class="footer-wa__img"
-          src="images/logo.png"
-          alt="Sabioncello logo"
-          loading="lazy"
-        />
-      </div>
-      <div class="container footer__inner">
-        <div>
-          <img src="images/logo-white.png" alt="Sabioncello logo" class="footer__logo" />
-          <p class="footer__text">
+</div>
+</div>
+</div>
+<a class="btn btn--dark steps-cta" data-i18n="pm_steps_cta" href="index.html#contact">Get in Touch</a>
+</div>
+</section>
+</main>
+<!-- FOOTER -->
+<footer class="site-footer">
+<div aria-label="WhatsApp" class="footer-wa" href="#contact">
+<span class="footer-wa__halo"></span>
+<span class="footer-wa__ring"></span>
+<a class="brand" href="index.html">
+          <img class="brand__logo" src="images/logo.png" alt="Sabioncello logo" />
+        </a>
+</div>
+<div class="container footer__inner">
+<div>
+<img alt="Sabioncello logo" class="footer__logo" src="images/logo-white.png"/>
+<p class="footer__text">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
             eiusmod tempor incididunt ut
           </p>
-          <div class="footer__socials">
-            <a href="#" class="footer__social" aria-label="Facebook">
-              <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="footer__social" aria-label="Instagram">
-              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="footer__social" aria-label="Twitter">
-              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-        <div>
-          <h4 class="footer__heading">Services</h4>
-          <ul class="footer__list">
-            <li><a href="object-cleaning.html">Object Cleaning</a></li>
-            <li><a href="property-management.html">Property Management</a></li>
-            <li><a href="holiday-rentals.html">Holiday Rentals</a></li>
-            <li><a href="garden-maintenance.html">Garden Maintenance</a></li>
-            <li><a href="pool-maintenance.html">Pool Service</a></li>
-            <li><a href="administrative-assistance.html">Administrative Assistance</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer__heading">Information</h4>
-          <ul class="footer__list">
-            <li><a href="#">Imprint</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer__heading">Contact</h4>
-          <div class="footer__contact-item">
-            <span class="footer__contact-icon">
-              <i class="fa-solid fa-phone" aria-hidden="true"></i>
-            </span>
-            <div>
-              <div class="footer__contact-title">Call Us</div>
-              <div class="footer__contact-sub">+385 (0)99 123 4567</div>
-            </div>
-          </div>
-          <div class="footer__contact-item">
-            <span class="footer__contact-icon">
-              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-            </span>
-            <div>
-              <div class="footer__contact-title">Email</div>
-              <div class="footer__contact-sub">info@sabioncello.com</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="footer__bottom">
-        <div class="footer__copyright">
+<div class="footer__socials">
+<a aria-label="Facebook" class="footer__social" href="#">
+<i aria-hidden="true" class="fa-brands fa-facebook-f"></i>
+</a>
+<a aria-label="Instagram" class="footer__social" href="#">
+<i aria-hidden="true" class="fa-brands fa-instagram"></i>
+</a>
+<a aria-label="Twitter" class="footer__social" href="#">
+<i aria-hidden="true" class="fa-brands fa-x-twitter"></i>
+</a>
+</div>
+</div>
+<div>
+<h4 class="footer__heading">Services</h4>
+<ul class="footer__list">
+<li><a href="object-cleaning.html">Object Cleaning</a></li>
+<li><a href="property-management.html">Property Management</a></li>
+<li><a href="holiday-rentals.html">Holiday Rentals</a></li>
+<li><a href="garden-maintenance.html">Garden Maintenance</a></li>
+<li><a href="pool-maintenance.html">Pool Service</a></li>
+<li><a href="administrative-assistance.html">Administrative Assistance</a></li>
+</ul>
+</div>
+<div>
+<h4 class="footer__heading">Information</h4>
+<ul class="footer__list">
+<li><a href="#">Imprint</a></li>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="index.html#contact">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="footer__heading">Contact</h4>
+<div class="footer__contact-item">
+<span class="footer__contact-icon">
+<i aria-hidden="true" class="fa-solid fa-phone"></i>
+</span>
+<div>
+<div class="footer__contact-title">Call Us</div>
+<div class="footer__contact-sub">+385 (0)99 123 4567</div>
+</div>
+</div>
+<div class="footer__contact-item">
+<span class="footer__contact-icon">
+<i aria-hidden="true" class="fa-solid fa-envelope"></i>
+</span>
+<div>
+<div class="footer__contact-title">Email</div>
+<div class="footer__contact-sub">info@sabioncello.com</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer__bottom">
+<div class="footer__copyright">
           © Copyright Sabioncello. All rights reserved
         </div>
-        <a href="#top" class="footer__to-top" aria-label="Back to top">
-          <i class="fa-solid fa-angle-up" aria-hidden="true"></i>
-        </a>
-      </div>
-    </footer>
-  </body>
+<a aria-label="Back to top" class="footer__to-top" href="#top">
+<i aria-hidden="true" class="fa-solid fa-angle-up"></i>
+</a>
+</div>
+</footer>
+</body>
 </html>

@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services | Sabioncello Property Management</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+
+  <body id="top">
+    <!-- NAVBAR -->
+    <header class="site-header">
+      <nav class="navbar">
+        <!-- Logo -->
+        <a class="brand" href="index.html">
+          <img class="brand__logo" src="images/logo.png" alt="Sabioncello logo" />
+        </a>
+
+        <!-- Mobile menu toggle -->
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label
+          for="nav-toggle"
+          class="hamburger"
+          aria-label="Toggle navigation"
+          aria-controls="nav-menu"
+          aria-expanded="false"
+        >
+          <i class="fa-solid fa-bars"></i>
+          <i class="fa-solid fa-xmark"></i>
+        </label>
+
+        <!-- Links -->
+        <div id="nav-menu" class="nav-right" aria-hidden="true">
+          <ul class="nav-links">
+            <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+            <li><a href="services.html" data-i18n="nav_services">Service</a></li>
+            <li><a href="index.html#about" data-i18n="nav_about">About Us</a></li>
+            <li>
+              <a class="btn btn--pill" href="index.html#contact" data-i18n="nav_contact">Contact Us</a>
+            </li>
+
+            <!-- Language dropdown -->
+            <li class="lang">
+              <details class="lang__details">
+                <summary class="lang__summary" aria-label="Language">
+                  <span class="lang__flag" aria-hidden="true"></span>
+                  <span class="lang__code">EN</span>
+                  <svg class="chev" viewBox="0 0 20 20" aria-hidden="true">
+                    <path
+                      d="M5.5 7.5L10 12l4.5-4.5"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </summary>
+
+                <div class="lang__menu" role="menu" aria-label="Language options">
+                  <button type="button" class="lang__item" role="menuitem" data-lang="en">
+                    <span class="lang__flag" aria-hidden="true"></span> English (Engleski)
+                  </button>
+                  <button type="button" class="lang__item" role="menuitem" data-lang="hr">
+                    <span class="lang__flag" aria-hidden="true"></span> Croatian (Hrvatski)
+                  </button>
+                </div>
+              </details>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="svc-hero">
+        <div class="svc-hero__inner container">
+          <h1 class="svc-hero__title" data-i18n="svc_hero_title">Our Services at a Glance</h1>
+          <div class="svc-hero__rule" aria-hidden="true"></div>
+          <p class="svc-hero__subtitle" data-i18n="svc_hero_subtitle">
+            From property management to cleaning, pool &amp; garden maintenance — we take care of your
+            home on Pelješac thoroughly, discreetly, and reliably.
+          </p>
+        </div>
+      </section>
+
+      <!-- SERVICES GRID -->
+      <section class="svc-grid">
+        <div class="svc-grid__inner container">
+          <div class="svc-grid__tiles">
+            <!-- IMPORTANT: all tiles go to index.html#contact -->
+            <a class="svc-tile" href="property-management.html" aria-label="Property Management">
+              <div class="svc-tile__media">
+                <img src="images/property.jpg" alt="Property Management" loading="lazy" />
+              </div>
+              <div class="svc-tile__overlay" aria-hidden="true"></div>
+              <h2 class="svc-tile__title" data-i18n="svc_tile1_title">Property Management</h2>
+            </a>
+
+            <a class="svc-tile" href="object-cleaning.html" aria-label="Thorough Cleaning">
+              <div class="svc-tile__media">
+                <img src="images/cleaning.jpg" alt="Thorough Cleaning" loading="lazy" />
+              </div>
+              <div class="svc-tile__overlay" aria-hidden="true"></div>
+              <h2 class="svc-tile__title" data-i18n="svc_tile2_title">Thorough Cleaning</h2>
+            </a>
+
+            <a class="svc-tile" href="holiday-rentals.html" aria-label="Holiday Rentals">
+              <div class="svc-tile__media">
+                <img src="images/holiday.jpg" alt="Holiday Rentals" loading="lazy" />
+              </div>
+              <div class="svc-tile__overlay" aria-hidden="true"></div>
+              <h2 class="svc-tile__title" data-i18n="svc_tile3_title">Holiday Rentals</h2>
+            </a>
+
+            <a class="svc-tile" href="garden-maintenance.html" aria-label="Garden Maintenance">
+              <div class="svc-tile__media">
+                <img src="images/garden.jpg" alt="Garden Maintenance" loading="lazy" />
+              </div>
+              <div class="svc-tile__overlay" aria-hidden="true"></div>
+              <h2 class="svc-tile__title" data-i18n="svc_tile4_title">Garden Maintenance</h2>
+            </a>
+
+            <a class="svc-tile" href="pool-maintenance.html" aria-label="Pool Maintenance">
+              <div class="svc-tile__media">
+                <img src="images/pool.jpg" alt="Pool Maintenance" loading="lazy" />
+              </div>
+              <div class="svc-tile__overlay" aria-hidden="true"></div>
+              <h2 class="svc-tile__title" data-i18n="svc_tile5_title">Pool Maintenance</h2>
+            </a>
+
+            <a class="svc-tile" href="administrative-assistance.html" aria-label="Administrative Assistance">
+              <div class="svc-tile__media">
+                <img src="images/administer.jpg" alt="Administrative Assistance" loading="lazy" />
+              </div>
+              <div class="svc-tile__overlay" aria-hidden="true"></div>
+              <h2 class="svc-tile__title" data-i18n="svc_tile6_title">Administrative Assistance</h2>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer" id="footer">
+      <a class="footer-wa" href="index.html#contact" aria-label="Go to contact section">
+  <div class="footer-wa__halo" aria-hidden="true"></div>
+  <div class="footer-wa__ring" aria-hidden="true"></div>
+  <img class="footer-wa__img" src="images/whatsapp.png" alt="WhatsApp" />
+</a>
+
+
+      <div class="footer__inner container">
+        <div class="footer__col footer__brand">
+          <img class="footer__logo" src="images/logo-white.png" alt="Sabioncello Property Management" />
+          <p class="footer__text" data-i18n="footer_text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+          </p>
+
+          <div class="footer__socials" aria-label="Social links">
+            <a class="footer__social" href="#" aria-label="Instagram">⌁</a>
+            <a class="footer__social" href="#" aria-label="LinkedIn">in</a>
+            <a class="footer__social" href="#" aria-label="Facebook">f</a>
+          </div>
+        </div>
+
+        <div class="footer__col">
+          <div class="footer__heading" data-i18n="footer_directly_to">Directly To</div>
+          <ul class="footer__list">
+            <li><a href="index.html" data-i18n="footer_nav_home">Home</a></li>
+            <li><a href="index.html#about" data-i18n="footer_nav_about">About Us</a></li>
+            <li><a href="index.html#contact" data-i18n="footer_nav_contact">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <div class="footer__heading" data-i18n="footer_services_heading">Services</div>
+          <ul class="footer__list">
+            <li><a href="index.html#contact" data-i18n="footer_service1">Key Holding Services</a></li>
+            <li><a href="index.html#contact" data-i18n="footer_service2">Cleaning Services</a></li>
+            <li><a href="index.html#contact" data-i18n="footer_service3">Checking in and out</a></li>
+            <li><a href="index.html#contact" data-i18n="footer_service4">Pool cleaning and Maintenance</a></li>
+            <li><a href="index.html#contact" data-i18n="footer_service5">Laundry Services</a></li>
+            <li><a href="index.html#contact" data-i18n="footer_service6">Paperwork</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col footer__contact">
+          <div class="footer__heading" data-i18n="footer_contact_heading">Do you have a question</div>
+
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon" aria-hidden="true">📞</span>
+            <div>
+              <div class="footer__contact-title" data-i18n="footer_contact_call_title">Call Us</div>
+              <div class="footer__contact-sub">+385 (0)99 595 6567</div>
+            </div>
+          </div>
+
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon" aria-hidden="true">✉️</span>
+            <div>
+              <div class="footer__contact-title" data-i18n="footer_contact_email_title">Email</div>
+              <div class="footer__contact-sub">info@sabioncello.org</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom container">
+        <div class="footer__copyright" data-i18n="footer_copyright">
+          © Copyright Sabioncello. All Rights Reserved
+        </div>
+        <a class="footer__to-top" href="#top" aria-label="Back to top">
+          <span aria-hidden="true">↑</span>
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>

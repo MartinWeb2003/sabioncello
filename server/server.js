@@ -7,15 +7,13 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// Needed to get __dirname in ESM
+// Get __dirname in ESM
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 dotenv.config();
 const app = express();
 
-// Security and middleware
-import helmet from "helmet";
-
+// Helmet with CSP for Google Maps
 app.use(
   helmet({
     contentSecurityPolicy: {
@@ -35,16 +33,17 @@ app.use(
   })
 );
 
-app.use(cors({
-  origin: "http://127.0.0.1:5501", // for local development
-  methods: ["POST"]
-}));
+// CORS for local dev (can be adjusted for production)
+app.use(
+  cors({
+    origin: "http://127.0.0.1:5501",
+    methods: ["POST"],
+  })
+);
+
 app.use(express.json({ limit: "50kb" }));
+app.use(express.static(path.join(__dirname, "../public"))); // Serve frontend
 
-// Serve static files (CSS, JS, images, HTML)
-app.use(express.static(path.join(__dirname, "../public")));
-
-// Escape HTML for email safety
 function escapeHtml(str) {
   if (typeof str !== "string") return str;
   return str
@@ -55,27 +54,27 @@ function escapeHtml(str) {
     .replace(/'/g, "&#039;");
 }
 
-// Validation schema
+// Zod validation schema
 const ContactSchema = z.object({
   name: z.string().trim().min(2).max(100),
   email: z.string().trim().email().max(200),
   phone: z.string().trim().min(6).max(30),
   message: z.string().trim().min(5).max(4000),
-  website: z.string().optional() // honeypot field
+  website: z.string().optional(),
 });
 
-// Email transporter
+// Nodemailer setup
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: Number(process.env.SMTP_PORT || 587),
   secure: String(process.env.SMTP_SECURE || "false").toLowerCase() === "true",
   auth: {
     user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS
-  }
+    pass: process.env.SMTP_PASS,
+  },
 });
 
-// Contact endpoint
+// POST route to handle form
 app.post("/api/contact", async (req, res) => {
   try {
     const parsed = ContactSchema.safeParse(req.body);
@@ -84,9 +83,8 @@ app.post("/api/contact", async (req, res) => {
     }
 
     const { name, email, phone, message, website } = parsed.data;
-
     if (website && website.trim() !== "") {
-      console.log("Honeypot triggered, likely spam bot.");
+      console.log("Honeypot triggered.");
       return res.json({ ok: true });
     }
 
@@ -122,27 +120,26 @@ app.post("/api/contact", async (req, res) => {
       replyTo: email,
       subject,
       text: plainText,
-      html
+      html,
     });
 
-    console.log("Contact form emailed successfully.");
+    console.log("Email sent.");
     res.json({ ok: true });
-
   } catch (err) {
     console.error("Error in /api/contact:", err);
     res.status(500).json({ ok: false, error: "Server error." });
   }
 });
 
-// Catch-all for static HTML routes (e.g. /services.html)
+// Handle all HTML files like /services.html
 app.get("/:page", (req, res, next) => {
   const filePath = path.join(__dirname, "../public", req.params.page);
   res.sendFile(filePath, (err) => {
-    if (err) next(); // let default 404 handler take over
+    if (err) next(); // Let default 404 take over
   });
 });
 
-// Default root
+// Root route
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });

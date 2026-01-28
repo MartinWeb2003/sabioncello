@@ -30,7 +30,8 @@ function escapeHtml(str) {
 app.use(express.json({ limit: "50kb" }));  // parse JSON bodies
 
 // Serve static files from ../public (for the frontend)
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "../public")));
+
 
 // Define Zod schema for contact form fields (server-side validation)
 const ContactSchema = z.object({
@@ -113,6 +114,17 @@ app.post("/api/contact", async (req, res) => {
     return res.status(500).json({ ok: false, error: "Server error." });
   }
 });
+
+// Serve all .html files from public directory
+app.get("/:page", (req, res, next) => {
+  const filePath = path.join(__dirname, "../public", req.params.page);
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      next(); // Let Express handle 404 if file doesn't exist
+    }
+  });
+});
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

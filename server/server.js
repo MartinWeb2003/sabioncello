@@ -14,7 +14,27 @@ dotenv.config();
 const app = express();
 
 // Security and middleware
-app.use(helmet());
+import helmet from "helmet";
+
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "https://maps.googleapis.com"],
+        frameSrc: ["'self'", "https://www.google.com"],
+        objectSrc: ["'none'"],
+        imgSrc: ["'self'", "data:", "https://maps.gstatic.com", "https://maps.googleapis.com"],
+        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        connectSrc: ["'self'"],
+        baseUri: ["'self'"],
+        formAction: ["'self'"],
+      },
+    },
+  })
+);
+
 app.use(cors({
   origin: "http://127.0.0.1:5501", // for local development
   methods: ["POST"]

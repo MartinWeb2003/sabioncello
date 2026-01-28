@@ -813,7 +813,7 @@ const translations = {
         submitBtn.style.opacity = "0.7";
       }
 
-      const res = await fetch("/api/contact", {
+      const res = await fetch("http://localhost:3000/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...data, website })
@@ -823,17 +823,137 @@ const translations = {
       if (!res.ok || !out.ok) {
         throw new Error(out?.error || "Request failed.");
       }
-
-      alert("Thanks! We received your message.");
+      const statusDiv = document.querySelector("#form-status");
+      statusDiv.textContent = "Your message has been sent successfully.";
+      statusDiv.style.color = "grey";
+statusDiv.style.fontStyle = "italic";
+statusDiv.style.fontSize = "0.8rem";
       form.reset();
     } catch (err) {
       console.error(err);
-      alert("Sorry — something went wrong. Please try again later.");
+      const resJson = await response.json();
+      statusDiv.textContent = resJson.error || "";
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.style.opacity = "";
       }
+    }
+  });
+})();
+
+(() => {
+  const form = document.querySelector(".contact__form");
+  if (!form) return;
+
+  // Field references
+  const nameEl = form.querySelector("#c-name"),
+        emailEl = form.querySelector("#c-email"),
+        phoneEl = form.querySelector("#c-phone"),
+        msgEl   = form.querySelector("#c-msg"),
+        honeypotEl = form.querySelector('input[name="website"]'),
+        submitBtn  = form.querySelector('button[type="submit"]');
+
+  // Helper functions for validation
+  const isEmail = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s).trim());
+  const clean   = (s) => String(s ?? "").trim();
+
+  // Real-time: clear field error on user input
+  [nameEl, emailEl, phoneEl, msgEl].forEach(field => {
+    field.addEventListener("input", () => {
+      const errDiv = document.getElementById(field.id + "-error");
+      if (errDiv) errDiv.textContent = "";  // remove error as user fixes input
+    });
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    // Clear any previous error messages
+    document.getElementById("c-name-error").textContent = "";
+    document.getElementById("c-email-error").textContent = "";
+    document.getElementById("c-phone-error").textContent = "";
+    document.getElementById("c-msg-error").textContent   = "";
+    const statusEl = document.getElementById("form-status");
+    if (statusEl) {
+      statusEl.textContent = "";
+      statusEl.classList.remove("success", "error");
+    }
+
+    // Collect values and validate each field
+    const name    = clean(nameEl.value),
+          email   = clean(emailEl.value),
+          phone   = clean(phoneEl.value),
+          message = clean(msgEl.value);
+    let valid = true;
+    if (name.length < 2) {
+      document.getElementById("c-name-error").textContent = "Please enter your name.";
+      valid = false;
+    } else if (name.length > 100) {
+      document.getElementById("c-name-error").textContent = "Name must be at most 100 characters.";
+      valid = false;
+    }
+    if (!isEmail(email)) {
+      document.getElementById("c-email-error").textContent = 
+        email.length ? "Please enter a valid email." : "Please enter your email.";
+      valid = false;
+    } else if (email.length > 200) {
+      document.getElementById("c-email-error").textContent = "Email must be at most 200 characters.";
+      valid = false;
+    }
+    if (phone.length < 6) {
+      document.getElementById("c-phone-error").textContent = "Please enter a valid phone number.";
+      valid = false;
+    } else if (phone.length > 30) {
+      document.getElementById("c-phone-error").textContent = "Phone number is too long.";
+      valid = false;
+    }
+    if (message.length < 5) {
+      document.getElementById("c-msg-error").textContent = "Please enter a message.";
+      valid = false;
+    } else if (message.length > 4000) {
+      document.getElementById("c-msg-error").textContent = "Message is too long.";
+      valid = false;
+    }
+
+    if (!valid) {
+      // One or more fields invalid – abort submission
+      return;
+    }
+
+    // Prepare payload (including honeypot)
+    const payload = { name, email, phone, message, website: clean(honeypotEl.value || "") };
+
+    try {
+      // Disable button and show loading state during submission
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = "0.7";
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok || !out.ok) {
+        // If server responded with an error or `ok:false`
+        throw new Error(out.error || "Request failed.");
+      }
+      // Success – show confirmation and reset form
+      if (statusEl) {
+        statusEl.textContent = "Thanks! We received your message.";
+        statusEl.classList.add("success");
+      }
+      form.reset();
+    } catch (err) {
+      console.error("Submission failed:", err);
+      if (statusEl) {
+        statusEl.textContent = "";
+        statusEl.classList.add("error");
+      }
+    } finally {
+      // Re-enable the submit button
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = "";
     }
   });
 })();

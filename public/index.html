@@ -471,53 +471,36 @@
           </div>
 
           <div class="contact__form-panel">
-            <form class="contact__form" action="#" method="post">
-              <label class="contact__label" for="c-name" data-i18n="contact_label_name">Name</label>
-              <input
-                class="contact__input"
-                id="c-name"
-                name="name"
-                type="text"
-                placeholder="Type your name..."
-                data-i18n-placeholder="contact_placeholder_name"
-              />
+            <form class="contact__form" action="#" method="post" novalidate>
+  <label class="contact__label" for="c-name">Name</label>
+  <input class="contact__input" id="c-name" name="name" type="text" 
+         placeholder="Type your name." />
+  <div class="field-error" id="c-name-error"></div>
 
-              <label class="contact__label" for="c-email" data-i18n="contact_label_email">Email</label>
-              <input
-                class="contact__input"
-                id="c-email"
-                name="email"
-                type="email"
-                placeholder="Type your email address..."
-                data-i18n-placeholder="contact_placeholder_email"
-              />
+  <label class="contact__label" for="c-email">Email</label>
+  <input class="contact__input" id="c-email" name="email" type="email" 
+         placeholder="Type your email address." />
+  <div class="field-error" id="c-email-error"></div>
 
-              <label class="contact__label" for="c-phone" data-i18n="contact_label_phone">
-                Phone Number
-              </label>
-              <input
-                class="contact__input"
-                id="c-phone"
-                name="phone"
-                type="tel"
-                placeholder="Type your number"
-                data-i18n-placeholder="contact_placeholder_phone"
-              />
+  <label class="contact__label" for="c-phone">Phone Number</label>
+  <input class="contact__input" id="c-phone" name="phone" type="tel" 
+         placeholder="Type your number" />
+  <div class="field-error" id="c-phone-error"></div>
 
-              <label class="contact__label" for="c-msg" data-i18n="contact_label_message">Message</label>
-              <textarea
-                class="contact__textarea"
-                id="c-msg"
-                name="message"
-                rows="5"
-                placeholder="Type your message..."
-                data-i18n-placeholder="contact_placeholder_message"
-              ></textarea>
+  <label class="contact__label" for="c-msg">Message</label>
+  <textarea class="contact__textarea" id="c-msg" name="message" rows="5" 
+            placeholder="Type your message."></textarea>
+  <div class="field-error" id="c-msg-error"></div>
 
-              <button class="contact__submit btn btn--dark" type="submit" data-i18n="contact_cta">
-                GET STARTED
-              </button>
-            </form>
+  <!-- Honeypot field (hidden from users) -->
+  <input type="text" name="website" tabindex="-1" autocomplete="off" 
+         style="display:none;" />
+
+  <button class="contact__submit btn btn--dark" type="submit">SCHEDULE A CALL</button>
+</form>
+<div id="form-status" class="contact__status"></div>
+
+
           </div>
         </div>
       </section>

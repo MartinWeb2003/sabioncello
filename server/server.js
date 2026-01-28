@@ -1,50 +1,47 @@
-// server/server.js
 import express from "express";
 import helmet from "helmet";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
-import path from "path";
-import { fileURLToPath } from "url";
-import { z } from "zod";  // for validation
+import { z } from "zod";
 
 dotenv.config();
-
 const app = express();
 
-// security headers & JSON parsing
+// Middleware setup
 app.use(helmet());
-app.use(express.json({ limit: "50kb" }));
+import cors from "cors";
 
-// serve static files from ../public
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const publicDir = path.join(__dirname, "..", "public");
-app.use(express.static(publicDir));
+// Allow CORS in development
+app.use(cors({
+  origin: "http://127.0.0.1:5501", // allow Live Server frontend
+  methods: ["POST"],              // allow only POST method
+}));
 
-// zod schema for contact form (authoritative validation)
+function escapeHtml(str) {
+  if (typeof str !== "string") return str;
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+app.use(express.json({ limit: "50kb" }));  // parse JSON bodies
+
+// Serve static files from ../public (for the frontend)
+app.use(express.static("public"));
+
+// Define Zod schema for contact form fields (server-side validation)
 const ContactSchema = z.object({
-  name: z.string().trim().min(2).max(100),
-  email: z.string().trim().email().max(200),
-  phone: z.string().trim().min(6).max(30),
+  name:    z.string().trim().min(2).max(100),
+  email:   z.string().trim().email().max(200),
+  phone:   z.string().trim().min(6).max(30),
   message: z.string().trim().min(5).max(4000),
-  website: z.string().optional()  // optional honeypot
+  website: z.string().optional()  // honeypot field (optional)
 });
 
-// escape user input for HTML emails
-function escapeHtml(str) {
-  return String(str ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-function oneLine(str) {
-  return String(str ?? "").trim().replace(/\s+/g, " ");
-}
-
-// configure nodemailer transport from environment variables
+// Configure Nodemailer transporter using SMTP settings from .env
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: Number(process.env.SMTP_PORT || 587),
@@ -55,80 +52,79 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// endpoint to handle form submission
+
+
+// POST endpoint to handle contact form submission
 app.post("/api/contact", async (req, res) => {
   try {
+    // Validate incoming JSON against the schema
     const parsed = ContactSchema.safeParse(req.body);
     if (!parsed.success) {
       return res.status(400).json({ ok: false, error: "Invalid form data." });
     }
     const { name, email, phone, message, website } = parsed.data;
-    // honeypot: if filled, quietly succeed to block bots
+
+    // Honeypot check: if 'website' field is filled, assume it's a bot and do nothing
     if (website && website.trim() !== "") {
-      return res.json({ ok: true });
+      console.log("Honeypot triggered, likely spam bot – skipping email.");
+      return res.json({ ok: true });  // respond with success but skip sending
     }
 
+    // Compose email content (subject, text, HTML)
     const now = new Date();
-    const subject = `New enquiry: ${oneLine(name)}`;
-    const plainText =
+    const subject   = `New enquiry: ${name}`;  // or use a sanitized oneLine(name)
+    const plainText = 
       `New website enquiry\n\n` +
-      `Name: ${oneLine(name)}\n` +
-      `Email: ${oneLine(email)}\n` +
-      `Phone: ${oneLine(phone)}\n` +
-      `Date: ${now.toISOString()}\n\n` +
+      `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nDate: ${now.toISOString()}\n\n` +
       `Message:\n${message}\n`;
-
-    // simple HTML table for nicer formatting
+    // Create an HTML table for nicer formatting of the message
     const html = `
       <div style="font-family: Arial, sans-serif;">
         <h2>New website enquiry</h2>
         <table cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
-          <tr>
-            <td style="border: 1px solid #ddd;"><strong>Name</strong></td>
-            <td style="border: 1px solid #ddd;">${escapeHtml(name)}</td>
-          </tr>
-          <tr>
-            <td style="border: 1px solid #ddd;"><strong>Email</strong></td>
-            <td style="border: 1px solid #ddd;">${escapeHtml(email)}</td>
-          </tr>
-          <tr>
-            <td style="border: 1px solid #ddd;"><strong>Phone</strong></td>
-            <td style="border: 1px solid #ddd;">${escapeHtml(phone)}</td>
-          </tr>
-          <tr>
-            <td style="border: 1px solid #ddd;"><strong>Date</strong></td>
-            <td style="border: 1px solid #ddd;">${escapeHtml(now.toISOString())}</td>
-          </tr>
+          <tr><td style="border:1px solid #ddd;"><strong>Name</strong></td>
+              <td style="border:1px solid #ddd;">${escapeHtml(name)}</td></tr>
+          <tr><td style="border:1px solid #ddd;"><strong>Email</strong></td>
+              <td style="border:1px solid #ddd;">${escapeHtml(email)}</td></tr>
+          <tr><td style="border:1px solid #ddd;"><strong>Phone</strong></td>
+              <td style="border:1px solid #ddd;">${escapeHtml(phone)}</td></tr>
+          <tr><td style="border:1px solid #ddd;"><strong>Date</strong></td>
+              <td style="border:1px solid #ddd;">${escapeHtml(now.toISOString())}</td></tr>
         </table>
         <h3>Message</h3>
-        <div style="border: 1px solid #ddd; padding: 10px; white-space: pre-wrap;">
+        <div style="border:1px solid #ddd; padding:10px; white-space:pre-wrap;">
           ${escapeHtml(message)}
         </div>
-      </div>
-    `;
-
+      </div>`;
+    // Send the email using the transporter
     await transporter.sendMail({
-      from: process.env.MAIL_FROM,
-      to: process.env.MAIL_TO,  // this is "bogojemartin@gmail.com"
-      replyTo: email,
-      subject,
+      from: process.env.MAIL_FROM,         // e.g. "Your Site <no-reply@yoursite.com>"
+      to:   process.env.MAIL_TO,           // recipient (e.g. bogojemartin@gmail.com)
+      replyTo: email,                     // so the client can reply directly
+      subject: subject,
       text: plainText,
-      html
+      html: html
     });
 
-    return res.json({ ok: true });
+    console.log("Contact form submission emailed successfully.");
+    return res.json({ ok: true });  // success response
   } catch (err) {
-    console.error(err);
+    console.error("Error in /api/contact:", err);
     return res.status(500).json({ ok: false, error: "Server error." });
   }
 });
 
-// fallback: serve index.html for unknown routes (useful for SPA)
-app.get("*", (req, res) => {
-  res.sendFile(path.join(publicDir, "index.html"));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });
 
-const port = Number(process.env.PORT || 3000);
-app.listen(port, () => {
-  console.log(`🚀 Server running at http://localhost:${port}`);
+import path from "path";
+import { fileURLToPath } from "url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Serve index.html at root
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
+

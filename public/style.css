@@ -1769,4 +1769,25 @@ a, button, input, textarea, summary, .btn,
   }
 }
 
+/* Error message for each field */
+.field-error {
+  color: #e63946;            /* red color for errors */
+  font-size: 0.85em;
+  margin: 4px 0;             /* small vertical spacing */
+}
 
+/* Status message after form submission */
+.contact__status {
+  margin-top: 12px;
+  font-weight: 600;
+}
+/* Success (green text) and error (red text) variants */
+.contact__status.success { color: #2ca872; }  /* e.g. green for success */
+.contact__status.error   { color: #e63946; }  /* reuse red for errors */
+
+.contact__status {
+  color: grey;
+  font-style: italic;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}

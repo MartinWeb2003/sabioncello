@@ -34,12 +34,7 @@ app.use(
 );
 
 // CORS for local dev (can be adjusted for production)
-app.use(
-  cors({
-    origin: "http://127.0.0.1:5501",
-    methods: ["POST"],
-  })
-);
+app.use(cors());
 
 app.use(express.json({ limit: "50kb" }));
 app.use(express.static(path.join(__dirname, "../public"))); // Serve frontend

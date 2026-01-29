@@ -22,9 +22,9 @@ app.use(
         scriptSrc: ["'self'", "https://maps.googleapis.com"],
         frameSrc: ["'self'", "https://www.google.com"],
         objectSrc: ["'none'"],
-        imgSrc: ["'self'", "data:", "https://maps.gstatic.com", "https://maps.googleapis.com"],
-        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        imgSrc: ["'self'", "data:", "https://maps.gstatic.com", "https://maps.googleapis.com", "https://cdnjs.cloudflare.com"],
+        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdnjs.cloudflare.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com"],
         connectSrc: ["'self'"],
         baseUri: ["'self'"],
         formAction: ["'self'"],
@@ -141,6 +141,8 @@ app.get("/", (req, res) => {
 
 // Start server
 const PORT = process.env.PORT || 3000;
+app.get("/healthz", (req, res) => res.status(200).send("ok"));
+
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });

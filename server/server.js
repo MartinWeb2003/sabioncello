@@ -1,11 +1,11 @@
 import express from "express";
 import helmet from "helmet";
-import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 import { z } from "zod";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
+import Brevo from "@getbrevo/brevo";
 
 // Get __dirname in ESM
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -13,7 +13,12 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config();
 const app = express();
 
-// Helmet with CSP for Google Maps
+/**
+ * SECURITY HEADERS / CSP
+ * - Allows Google Maps embed
+ * - Allows Google Fonts
+ * - Allows Font Awesome via cdnjs (if you use it)
+ */
 app.use(
   helmet({
     contentSecurityPolicy: {
@@ -22,9 +27,23 @@ app.use(
         scriptSrc: ["'self'", "https://maps.googleapis.com"],
         frameSrc: ["'self'", "https://www.google.com"],
         objectSrc: ["'none'"],
-        imgSrc: ["'self'", "data:", "https://maps.gstatic.com", "https://maps.googleapis.com", "https://cdnjs.cloudflare.com"],
-        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdnjs.cloudflare.com"],
-        fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com"],
+        imgSrc: [
+          "'self'",
+          "data:",
+          "https://maps.gstatic.com",
+          "https://maps.googleapis.com",
+        ],
+        styleSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://fonts.googleapis.com",
+          "https://cdnjs.cloudflare.com",
+        ],
+        fontSrc: [
+          "'self'",
+          "https://fonts.gstatic.com",
+          "https://cdnjs.cloudflare.com",
+        ],
         connectSrc: ["'self'"],
         baseUri: ["'self'"],
         formAction: ["'self'"],
@@ -33,11 +52,13 @@ app.use(
   })
 );
 
-// CORS for local dev (can be adjusted for production)
+// CORS (fine for now; later restrict to your domain)
 app.use(cors());
 
 app.use(express.json({ limit: "50kb" }));
-app.use(express.static(path.join(__dirname, "../public"))); // Serve frontend
+
+// Serve frontend
+app.use(express.static(path.join(__dirname, "../public")));
 
 function escapeHtml(str) {
   if (typeof str !== "string") return str;
@@ -49,25 +70,24 @@ function escapeHtml(str) {
     .replace(/'/g, "&#039;");
 }
 
+// Health check (for uptime monitor)
+app.get("/healthz", (req, res) => res.status(200).send("ok"));
+
 // Zod validation schema
 const ContactSchema = z.object({
   name: z.string().trim().min(2).max(100),
   email: z.string().trim().email().max(200),
   phone: z.string().trim().min(6).max(30),
   message: z.string().trim().min(5).max(4000),
-  website: z.string().optional(),
+  website: z.string().optional(), // honeypot
 });
 
-// Nodemailer setup
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: Number(process.env.SMTP_PORT || 587),
-  secure: String(process.env.SMTP_SECURE || "false").toLowerCase() === "true",
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-});
+// Quick env sanity check (helps you catch missing vars in Render logs)
+function requireEnv(name) {
+  const v = process.env[name];
+  if (!v) throw new Error(`Missing required env var: ${name}`);
+  return v;
+}
 
 // POST route to handle form
 app.post("/api/contact", async (req, res) => {
@@ -78,13 +98,20 @@ app.post("/api/contact", async (req, res) => {
     }
 
     const { name, email, phone, message, website } = parsed.data;
+
+    // Honeypot: if bots fill it, pretend success
     if (website && website.trim() !== "") {
       console.log("Honeypot triggered.");
       return res.json({ ok: true });
     }
 
+    const BREVO_API_KEY = requireEnv("BREVO_API_KEY");
+    const MAIL_FROM = requireEnv("MAIL_FROM"); // MUST be a verified sender in Brevo
+    const MAIL_TO = requireEnv("MAIL_TO");
+
     const now = new Date();
     const subject = `New enquiry: ${name}`;
+
     const plainText =
       `New website enquiry\n\n` +
       `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nDate: ${now.toISOString()}\n\n` +
@@ -109,16 +136,23 @@ app.post("/api/contact", async (req, res) => {
         </div>
       </div>`;
 
-    await transporter.sendMail({
-      from: process.env.MAIL_FROM,
-      to: process.env.MAIL_TO,
-      replyTo: email,
+    // Brevo transactional email send
+    const apiInstance = new Brevo.TransactionalEmailsApi();
+    apiInstance.setApiKey(
+      Brevo.TransactionalEmailsApiApiKeys.apiKey,
+      BREVO_API_KEY
+    );
+
+    await apiInstance.sendTransacEmail({
+      sender: { email: MAIL_FROM, name: "Sabioncello Website" },
+      to: [{ email: MAIL_TO }],
       subject,
-      text: plainText,
-      html,
+      textContent: plainText,
+      htmlContent: html,
+      replyTo: { email }, // reply goes to the visitor
     });
 
-    console.log("Email sent.");
+    console.log("Brevo email sent.");
     res.json({ ok: true });
   } catch (err) {
     console.error("Error in /api/contact:", err);
@@ -141,8 +175,6 @@ app.get("/", (req, res) => {
 
 // Start server
 const PORT = process.env.PORT || 3000;
-app.get("/healthz", (req, res) => res.status(200).send("ok"));
-
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
